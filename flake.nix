@@ -31,18 +31,19 @@
     };
   };
 
-  outputs = {...} @ inputs: let
-    myLib = import ./myLib/default.nix {inherit inputs;};
-  in
+  outputs = { ... } @ inputs:
+    let
+      myLib = import ./myLib/default.nix { inherit inputs; };
+    in
     with myLib; {
       nixosConfigurations = {
         mini-itx = mkSystem ./hosts/mini-itx/configuration.nix;
-        laptop = mkSystem ./hosts/laptop/configuration.nix;
+        thinkpad-e14 = mkSystem ./hosts/thinkpad-e14/configuration.nix;
       };
 
       homeConfigurations = {
         "mous@mini-itx" = mkHome "x86_64-linux" ./hosts/mini-itx/home.nix;
-        "mous@laptop" = mkHome "x86_64-linux" ./hosts/laptop/home.nix;
+        "mous@thinkpad-e14" = mkHome "x86_64-linux" ./hosts/thinkpad-e14/home.nix;
       };
 
       homeManagerModules.default = ./homeManagerModules;
