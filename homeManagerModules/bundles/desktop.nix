@@ -26,5 +26,6 @@
     telegram-desktop
     discord
     pavucontrol
+    overskride
   ];
 }

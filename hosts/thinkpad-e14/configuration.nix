@@ -1,11 +1,12 @@
-{ conifg
-, pkgs
-, lib
-, inputs
-, outputs
-, sytsem
-, myLib
-, ...
+{
+  conifg,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  sytsem,
+  myLib,
+  ...
 }: {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
@@ -22,23 +23,20 @@
 
     userName = "mous";
     userConfig = ./home.nix;
-    userNixosSettings = {
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
-    };
   };
 
   networking.hostName = "thinkpad-e14";
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   boot = {
-    kernelModules = [ "amdgpu" ];
+    kernelModules = ["amdgpu"];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
 
   programs.kdeconnect.enable = true;
@@ -48,7 +46,7 @@
     opengl = {
       enable = true;
       driSupport = true;
-      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages = with pkgs; [amdvlk];
     };
   };
 

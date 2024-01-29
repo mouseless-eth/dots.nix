@@ -25,9 +25,6 @@
 
     userName = "mous";
     userConfig = ./home.nix;
-    userNixosSettings = {
-      extraGroups = ["networkmanager" "wheel" "docker"];
-    };
   };
 
   services.openssh.enable = true;

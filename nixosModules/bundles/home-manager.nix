@@ -58,7 +58,7 @@ in {
         initialPassword = "1234";
         description = cfg.userName;
         shell = pkgs.fish;
-        extraGroups = ["libvirtd" "networkmanager" "wheel"];
+        extraGroups = ["libvirtd" "networkmanager" "wheel" "video" "audio" "network" "docker" "seat"];
 
         packages = [pkgs.home-manager];
       }

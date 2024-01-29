@@ -74,7 +74,7 @@ in {
         config = ''require("nvim-autopairs").setup()'';
       }
       {
-        plugin = fromGitHub "f5fb79107d9fb6eae145bb1a692121965d818270" "main" "mikesmithgh/kitty-scrollback.nvim";
+        plugin = fromGitHub "bb5332b8ec0763b9e611f8cabf4165ed8c3893f5" "main" "mikesmithgh/kitty-scrollback.nvim";
         type = "lua";
         config = ''require('kitty-scrollback').setup()'';
       }

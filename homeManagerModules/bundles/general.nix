@@ -29,5 +29,7 @@
     jq
     ripgrep
     neofetch
+
+    nurl
   ];
 }

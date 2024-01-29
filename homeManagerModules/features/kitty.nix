@@ -81,8 +81,7 @@
 
     # Browse scrollback buffer in nvim
     map = ''
-      ctrl+h kitty_scrollback_nvim --nvim-args vim.keymap.set("i", "jk", "<esc>")
-      ctrl+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+      ctrl+h kitty_scrollback_nvim
     '';
     # Browse output of the last shell command in nvim
 
