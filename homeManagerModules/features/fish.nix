@@ -28,6 +28,8 @@ in {
 
       # misc
       n = "nvim";
+      dots = "cd $HOME/.snowstorm";
+      ns = "nix-search";
     };
     functions = {
       fish_greeting = "";

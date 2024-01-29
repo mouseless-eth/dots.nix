@@ -1,9 +1,11 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   nixpkgs = {
+    overlays = [inputs.foundry.overlay];
     config = {
       allowUnfree = true;
       experimentalFeatures = "nix-command flakes";

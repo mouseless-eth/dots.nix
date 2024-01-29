@@ -1,64 +1,62 @@
 {pkgs, ...}: let
   hms = pkgs.writeShellScriptBin "hms" ''
     pushd $HOME/.snowstorm
+    hostname=$(hostname)
     home-manager --flake .#$USER@$hostname switch
     popd
   '';
 
   nrs = pkgs.writeShellScriptBin "nrs" ''
     pushd $HOME/.snowstorm
+    hostname=$(hostname)
     sudo nixos-rebuild --flake .#$hostname switch
     popd
   '';
 
-  dots = pkgs.writeShellScriptBin "dots" ''cd $HOME/.snowstorm'';
-
   tmux-sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
-      #!/usr/bin/env bash
+    #!/usr/bin/env bash
 
-      if [[ $# -eq 1 ]]; then
-      selected=$1
-      else
-      selected=$(find ~/projects/quick-hacks/ ~/projects ~/work/pimlico/ -mindepth 1 -maxdepth 1 -type d | fzf)
-      fi
-
-      if [[ -z $selected ]];
-    then
-    exit 0
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        selected=$(find ~/projects/ ~/work/pimlico/ ~/work/mev/ -mindepth 1 -maxdepth 1 -type d | fzf)
     fi
 
-    selected_name = $
-      (basename "$selected" | tr._)
-        tmux_running=$(pgrep tmux)
+    if [[ -z $selected ]];
+    then
+        exit 0
+    fi
+
+    selected_name=$(basename "$selected" | tr '.' '_')
+    tmux_running=$(pgrep tmux)
 
     if [[ -z $TMUX ]] && [[ -z $tmux_running ]];
     then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
+        tmux new-session -s "$selected_name" -c "$selected"
+        exit 0
     fi
 
     if [[ -z $TMUX ]]; then
-    if ! tmux has-session -t = $selected_name 2 > /dev/null;
-    then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
-    fi
-    tmux a -t $selected_name
-    exit 0
-    fi
-
-    if ! tmux has-session -t = $selected_name 2 > /dev/null;
-    then
-    tmux new-session -ds $selected_name -c $selected
+        if ! tmux has-session -t "$selected_name" 2>/dev/null;
+        then
+            tmux new-session -s "$selected_name" -c "$selected"
+            exit 0
+        fi
+        tmux a -t "$selected_name"
+        exit 0
     fi
 
-    tmux switch-client -t $selected_name
+    if ! tmux has-session -t "$selected_name" 2>/dev/null;
+    then
+        tmux new-session -ds "$selected_name" -c "$selected"
+    fi
+
+    tmux switch-client -t "$selected_name"
   '';
 in {
   home.packages = [
     tmux-sessionizer
     hms
     nrs
-    dots
   ];
 }

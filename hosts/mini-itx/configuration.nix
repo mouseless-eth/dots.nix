@@ -26,12 +26,18 @@
     userName = "mous";
     userConfig = ./home.nix;
     userNixosSettings = {
-      extraGroups = ["netwrokmanager" "wheel" "docker"];
+      extraGroups = ["networkmanager" "wheel" "docker"];
     };
   };
 
-  networking.hostName = "mini-itx";
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  users.users.mous.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJX1aaXfCcqZ1mSmnFvfslKCvdE5oAcEs7/J/bQrERYn 97399882+mouseless-eth@users.noreply.github.com"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrBQFkxipTlhXWyUdxoUcjPdWHCetNFlSYFN7NTs9DM"
+  ];
 
+  networking.hostName = "mini-itx";
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   boot = {
@@ -41,6 +47,28 @@
       device = "/dev/nvme1n1";
     };
   };
+
+  fileSystems = {
+    "/mount/nvme0n1-2tb" = {
+      device = "/dev/disk/by-uuid/b12343e8-172e-45af-ac13-d64088bd0d2b";
+      fsType = "ext4";
+      depends = [
+        "/"
+      ];
+    };
+    "/mount/sdb1-4tb" = {
+      device = "/dev/disk/by-uuid/0a86009f-9f72-473c-828b-15dad32db1c4";
+      fsType = "ext4";
+      depends = [
+        "/"
+      ];
+    };
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /mount/nvme0n1-2tb 0777 root root -"
+    "d /mount/sdb1-4tb 0777 root root -"
+  ];
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;

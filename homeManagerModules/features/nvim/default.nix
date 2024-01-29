@@ -25,7 +25,6 @@ in {
   # Binaries that neovim depends on goes here (mainly going to be lsp related).
   home.packages = with pkgs; [
     # lsp plugins
-    rust-analyzer
     vscode-langservers-extracted # eslint
     docker-compose-language-service # docker_compose-language_service
     dockerfile-language-server-nodejs # dockerls
@@ -50,7 +49,6 @@ in {
     deadnix
 
     # misc (non LSP plugs)
-    nodejs_18 # copilot deps on node
     typescript
     tree-sitter
     nixpkgs-fmt
@@ -167,6 +165,11 @@ in {
         type = "lua";
         config = readFile ./plugins/lsp/none-ls.rc.lua;
       }
+      #{
+      #  plugin = trouble-nvim;
+      #  type = "lua";
+      #  config = readFile ./plugins/lsp/trouble.rc.lua;
+      #}
       {
         plugin = lspsaga-nvim;
         type = "lua";
