@@ -12,6 +12,8 @@
 
   programs.light.enable = true;
   security.rtkit.enable = true;
+  security.pam.services.login.fprintAuth = false;
+  security.pam.services.swaylock = {};
 
   fonts.packages = with pkgs; [
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka" "FiraCode"];})

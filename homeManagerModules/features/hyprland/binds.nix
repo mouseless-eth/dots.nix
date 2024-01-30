@@ -86,7 +86,7 @@ in {
       "${modShift}, 0, movetoworkspacesilent, 10"
 
       # misc
-      #"${modShift}, X, ${pkgs.swaylock}/bin/swaylock"
+      "${modShift}, X, exec, swaylock --screenshots --fade-in 0.2 --clock --timestr %H:%M:%S --datestr %a --effect-pixelate 2 --effect-blur 4x8 -u --indicator-radius 100 --ring-ver-color aabbcc00 --text-ver-color aabbcc00 --inside-ver-color aabbcc00 --line-ver-color aabbcc00"
     ];
   };
 }
