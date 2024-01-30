@@ -9,14 +9,15 @@
   /*
   = = custom pacakges = =
   */
-  fromGitHub = rev: ref: repo:
+  fromGitHub = owner: repo: rev: hash:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
-      src = builtins.fetchGit {
-        url = "https://github.com/${repo}.git";
-        ref = ref;
+      version = rev;
+      src = pkgs.fetchFromGitHub {
+        owner = owner;
+        repo = repo;
         rev = rev;
+        hash = hash;
       };
     };
 in {
@@ -74,7 +75,7 @@ in {
         config = ''require("nvim-autopairs").setup()'';
       }
       {
-        plugin = fromGitHub "bb5332b8ec0763b9e611f8cabf4165ed8c3893f5" "main" "mikesmithgh/kitty-scrollback.nvim";
+        plugin = fromGitHub "mikesmithgh" "kitty-scrollback.nvim" "v4.0.0" "sha256-hv3o5k85hBaGk8OBRLP7Rf0O9dxiKot6F7/EQelJHHg=";
         type = "lua";
         config = ''require('kitty-scrollback').setup()'';
       }

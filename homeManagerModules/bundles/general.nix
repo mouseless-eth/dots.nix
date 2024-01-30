@@ -21,6 +21,8 @@
   myHomeManager.custom-scripts.enable = true;
 
   home.packages = with pkgs; [
+    qt6.qtwayland
+
     fzf
     htop
     lf
@@ -29,7 +31,5 @@
     jq
     ripgrep
     neofetch
-
-    nurl
   ];
 }

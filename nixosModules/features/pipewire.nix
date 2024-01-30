@@ -1,6 +1,4 @@
 {...}: {
-  security.rtkit.enable = true;
-
   hardware.bluetooth = {
     enable = true;
     settings = {

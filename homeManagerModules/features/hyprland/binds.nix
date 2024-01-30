@@ -84,6 +84,9 @@ in {
       "${modShift}, 8, movetoworkspacesilent, 8"
       "${modShift}, 9, movetoworkspacesilent, 9"
       "${modShift}, 0, movetoworkspacesilent, 10"
+
+      # misc
+      #"${modShift}, X, ${pkgs.swaylock}/bin/swaylock"
     ];
   };
 }

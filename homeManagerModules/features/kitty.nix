@@ -77,7 +77,7 @@
     listen_on = "unix:/tmp/kitty";
 
     # kitty-scrollback.nvim Kitten alias
-    action_alias = "kitty_scrollback_nvim kitten /nix/store/bxhw7brdbcmakxi7zbjjnsdlxv6lcvlr-vim-pack-dir/pack/myNeovimPackages/start/mikesmithgh-kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
+    action_alias = "kitty_scrollback_nvim kitten /nix/store/x0zx62pdfwnllgz7abks0xk66lzjxpnj-vim-pack-dir/pack/myNeovimPackages/start/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
 
     # Browse scrollback buffer in nvim
     map = ''
@@ -86,7 +86,7 @@
     # Browse output of the last shell command in nvim
 
     # Show clicked command output in nvim
-    mouse_map = "ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output";
+    #mouse_map = "ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output";
   };
 
   home.sessionVariables.TERMINAL = "kitty";
