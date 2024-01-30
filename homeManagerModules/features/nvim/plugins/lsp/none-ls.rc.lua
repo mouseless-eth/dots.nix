@@ -22,6 +22,9 @@ null_ls.setup({
 		-- nix
 		null_ls.builtins.formatting.alejandra,
 		null_ls.builtins.diagnostics.deadnix,
+
+		-- rust
+		null_ls.builtins.diagnostics.rustfmt,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

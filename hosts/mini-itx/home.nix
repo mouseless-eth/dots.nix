@@ -20,7 +20,7 @@
         refreshRate = 60.0;
         x = 0;
         y = 0;
-        scale = 2;
+        scale = 2.0;
       }
       {
         name = "HDMI-A-2";
@@ -29,7 +29,7 @@
         refreshRate = 60.0;
         x = -720;
         y = 0;
-        scale = 2;
+        scale = 2.0;
         transform = 3;
       }
     ];

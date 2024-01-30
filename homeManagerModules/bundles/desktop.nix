@@ -30,6 +30,7 @@
     chromium
     telegram-desktop
     discord
+    grimblast
     pavucontrol
     overskride
   ];
