@@ -10,6 +10,8 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  services.unbound.enable = true;
+  networking.networkmanager.enable = true;
   programs.light.enable = true;
   security.rtkit.enable = true;
   security.pam.services.login.fprintAuth = false;

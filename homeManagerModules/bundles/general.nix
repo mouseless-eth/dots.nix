@@ -23,6 +23,7 @@
   home.packages = with pkgs; [
     qt6.qtwayland
 
+    unzip
     fzf
     htop
     lf
