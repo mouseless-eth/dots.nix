@@ -27,10 +27,14 @@
     nurl
     nix-search-cli
 
+    slack
+    telegram-desktop
     qutebrowser
     chromium
-    telegram-desktop
     discord
+
+    spotify
+
     grimblast
     pavucontrol
     overskride

@@ -29,7 +29,6 @@
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   boot = {
-    kernelModules = ["amdgpu"];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

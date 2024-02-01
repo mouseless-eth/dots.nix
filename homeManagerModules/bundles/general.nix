@@ -25,6 +25,7 @@
 
     busybox
     lsof
+    unzip
     fzf
     htop
     lf
