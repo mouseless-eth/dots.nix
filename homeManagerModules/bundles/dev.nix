@@ -14,7 +14,9 @@
   home.packages = with pkgs; [
     # misc
     lazygit
+    lazydocker
     docker
+    docker-compose
 
     # ts/js
     nodePackages_latest.pnpm
@@ -28,6 +30,5 @@
     openssl.dev
     rustup
     openssl
-    gcc
   ];
 }

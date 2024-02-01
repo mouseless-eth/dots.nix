@@ -25,7 +25,12 @@
 
     userName = "mous";
     userConfig = ./home.nix;
+    userNixosSettings = {
+      extraGroups = ["networkmanager" "wheel" "libvirtd" "docker" "audio" "video"];
+    };
   };
+
+  virtualisation.docker.enable = true;
 
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;

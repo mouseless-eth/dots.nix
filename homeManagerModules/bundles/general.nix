@@ -23,6 +23,8 @@
   home.packages = with pkgs; [
     qt6.qtwayland
 
+    busybox
+    lsof
     fzf
     htop
     lf
