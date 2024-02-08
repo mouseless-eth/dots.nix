@@ -55,7 +55,7 @@ lspconfig["nil_ls"].setup({
 				-- External formatter command (with arguments).
 				-- It should accepts file content in stdin and print the formatted code into stdout.
 				-- Example: ["nixpkgs-fmt"]
-				command = { "nixpkgs-fmt" },
+				command = { "alejandra" },
 			},
 			diagnostics = {
 				-- Ignored diagnostic kinds.
