@@ -29,12 +29,16 @@
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ethereum-nix = {
+      url = "github:nix-community/ethereum.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { ... } @ inputs:
-    let
-      myLib = import ./myLib/default.nix { inherit inputs; };
-    in
+  outputs = {...} @ inputs: let
+    myLib = import ./myLib/default.nix {inherit inputs;};
+  in
     with myLib; {
       nixosConfigurations = {
         mini-itx = mkSystem ./hosts/mini-itx/configuration.nix;

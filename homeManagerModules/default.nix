@@ -32,9 +32,22 @@
       configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
     })
     (myLib.filesIn ./bundles);
+
+  # Taking all module bundles in ./bundles and adding bundle.enables to them
+  services =
+    myLib.extendModules
+    (name: {
+      extraOptions = {
+        myHomeManager.services.${name}.enable = lib.mkEnableOption "enable ${name} service";
+      };
+
+      configExtension = config: (lib.mkIf cfg.services.${name}.enable config);
+    })
+    (myLib.filesIn ./services);
 in {
   imports =
     []
     ++ features
+    #++ services
     ++ bundles;
 }

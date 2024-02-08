@@ -1,13 +1,13 @@
-{ pkgs
-, lib
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   concatFiles = files: pkgs.lib.strings.concatMapStringsSep "\n" builtins.readFile files;
   readFile = file: builtins.readFile file;
 
   /*
-    = = custom pacakges = =
+  = = custom pacakges = =
   */
   fromGitHub = owner: repo: rev: hash:
     pkgs.vimUtils.buildVimPlugin {
@@ -20,8 +20,7 @@ let
         hash = hash;
       };
     };
-in
-{
+in {
   home.sessionVariables.EDITOR = "nvim";
 
   # Binaries that neovim depends on goes here (mainly going to be lsp related).
@@ -46,7 +45,7 @@ in
     python310Packages.isort
 
     # linting/diagnostics (none-ls plugins)
-    eslint_d
+    # eslint_d
     alejandra
     deadnix
 
@@ -103,13 +102,18 @@ in
         type = "lua";
         config = ''require("colorizer").setup()'';
       }
+
+      # Git
+      {
+        plugin = vim-fugitive;
+      }
       {
         plugin = gitsigns-nvim;
         type = "lua";
         config = readFile ./plugins/misc/gitsigns.rc.lua;
       }
 
-      # Meta gaming navigation
+      # Meta navigation
       {
         plugin = harpoon2;
         type = "lua";
@@ -129,8 +133,8 @@ in
         type = "lua";
         config = readFile ./plugins/tree/web-devicons.rc.lua;
       }
-      { plugin = plenary-nvim; }
-      { plugin = nui-nvim; }
+      {plugin = plenary-nvim;}
+      {plugin = nui-nvim;}
 
       # Statusline
       {
@@ -154,7 +158,7 @@ in
       }
 
       # Treesitter (highlighter)
-      { plugin = nvim-treesitter.withAllGrammars; }
+      {plugin = nvim-treesitter.withAllGrammars;}
 
       # LSP Related
       {
@@ -198,12 +202,12 @@ in
         config = readFile ./plugins/lsp/lspkind.rc.lua;
       }
       # strictly req:
-      { plugin = cmp_luasnip; } # get sources from luasnip
-      { plugin = friendly-snippets; } # strictly required
-      { plugin = cmp-nvim-lsp; } # get sources from lsp
-      { plugin = cmp-path; } # get sources from current dir
-      { plugin = cmp-look; } # get sources from dictionary
-      { plugin = cmp-buffer; } # get sources from dictionary
+      {plugin = cmp_luasnip;} # get sources from luasnip
+      {plugin = friendly-snippets;} # strictly required
+      {plugin = cmp-nvim-lsp;} # get sources from lsp
+      {plugin = cmp-path;} # get sources from current dir
+      {plugin = cmp-look;} # get sources from dictionary
+      {plugin = cmp-buffer;} # get sources from dictionary
       {
         plugin = lspkind-nvim;
         type = "lua";

@@ -51,6 +51,7 @@ in {
     ]
     #++ services
     ++ features
+    ++ services
     ++ bundles;
 
   config = {
