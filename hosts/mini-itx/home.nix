@@ -38,6 +38,7 @@
   home = {
     username = "mous";
     homeDirectory = lib.mkDefault "/home/mous";
+    packages = with pkgs; [ollama];
 
     stateVersion = "22.05";
   };

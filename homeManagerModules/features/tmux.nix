@@ -49,6 +49,7 @@
       set -g renumber-windows on
       set -g status-position top
       set -g default-terminal "${config.home.sessionVariables.TERMINAL}"
+      set -g default-terminal "screen-256color"
       set-window-option -g mode-keys vi
       bind -T copy-mode-vi v send-keys -X begin-selection
       bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
@@ -64,7 +65,7 @@
 
 
       # forget the find window.  That is for chumps
-      bind-key -r f run-shell "tmux neww ~/.local/bin/tmux-sessionizer"
+      bind-key -r f run-shell "tmux new ~/.local/bin/tmux-sessionizer"
     '';
   };
 }

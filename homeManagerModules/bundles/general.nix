@@ -5,7 +5,10 @@
   ...
 }: {
   nixpkgs = {
-    overlays = [inputs.foundry.overlay];
+    overlays = [
+      inputs.foundry.overlay
+      inputs.ethereum-nix.overlays.default
+    ];
     config = {
       allowUnfree = true;
       experimentalFeatures = "nix-command flakes";
@@ -23,6 +26,7 @@
   home.packages = with pkgs; [
     qt6.qtwayland
 
+    lsof
     unzip
     fzf
     htop

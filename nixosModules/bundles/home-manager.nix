@@ -52,10 +52,11 @@ in {
       };
     };
 
+    users.mutableUsers = true;
     users.users.${cfg.userName} =
       {
         isNormalUser = true;
-        initialPassword = "1234";
+        initialPassword = "1337";
         description = cfg.userName;
         shell = pkgs.fish;
         extraGroups = ["libvirtd" "networkmanager" "wheel" "video" "audio" "network" "docker" "seat"];

@@ -19,13 +19,19 @@
   myNixOS = {
     bundles.general-desktop.enable = true;
     bundles.home-manager.enable = true;
+    #services.reth.enable = true;
 
     #power-management.enable = true;
     pipewire.enable = true;
 
     userName = "mous";
     userConfig = ./home.nix;
+    userNixosSettings = {
+      extraGroups = ["networkmanager" "wheel" "libvirtd" "docker" "audio" "video"];
+    };
   };
+
+  virtualisation.docker.enable = true;
 
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
@@ -53,18 +59,10 @@
         "/"
       ];
     };
-    "/mount/sdb1-4tb" = {
-      device = "/dev/disk/by-uuid/0a86009f-9f72-473c-828b-15dad32db1c4";
-      fsType = "ext4";
-      depends = [
-        "/"
-      ];
-    };
   };
 
   systemd.tmpfiles.rules = [
     "d /mount/nvme0n1-2tb 0777 root root -"
-    "d /mount/sdb1-4tb 0777 root root -"
   ];
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];

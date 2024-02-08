@@ -45,7 +45,7 @@ in {
     python310Packages.isort
 
     # linting/diagnostics (none-ls plugins)
-    eslint_d
+    # eslint_d
     alejandra
     deadnix
 
@@ -102,13 +102,18 @@ in {
         type = "lua";
         config = ''require("colorizer").setup()'';
       }
+
+      # Git
+      {
+        plugin = vim-fugitive;
+      }
       {
         plugin = gitsigns-nvim;
         type = "lua";
         config = readFile ./plugins/misc/gitsigns.rc.lua;
       }
 
-      # Meta gaming navigation
+      # Meta navigation
       {
         plugin = harpoon2;
         type = "lua";
