@@ -11,7 +11,7 @@
   myHomeManager.nvim.enable = lib.mkDefault true;
   myHomeManager.xdg.enable = lib.mkDefault true;
   myHomeManager.fonts.enable = lib.mkDefault true;
-  myHomeManager.swaylock.enable = lib.mkDefault true;
+  #myHomeManager.swaylock.enable = lib.mkDefault true;
 
   qt.enable = true;
   qt.platformTheme = "gtk";
@@ -24,12 +24,13 @@
   };
 
   home.packages = with pkgs; [
+    libreoffice
     nurl
     nix-search-cli
 
     slack
     telegram-desktop
-    qutebrowser
+    #qutebrowser
     chromium
     discord
 

@@ -6,8 +6,8 @@
 }: {
   nixpkgs = {
     overlays = [
+      inputs.neovim-nightly-overlay.overlay
       inputs.foundry.overlay
-      inputs.ethereum-nix.overlays.default
     ];
     config = {
       allowUnfree = true;

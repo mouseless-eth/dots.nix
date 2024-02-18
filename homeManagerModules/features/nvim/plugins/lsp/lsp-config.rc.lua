@@ -2,16 +2,16 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
--- lspconfig["rust_analyzer"].setup({
---     capabilities = capabilities,
---     settings = {
---         ["rust-analyzer"] = {
---             procMacro = {
---                 enable = true
---             }
---         }
---     }
--- })
+--lspconfig["rust_analyzer"].setup({
+--	capabilities = capabilities,
+--	settings = {
+--		["rust-analyzer"] = {
+--			diagnostics = {
+--				enable = false,
+--			},
+--		},
+--	},
+--})
 lspconfig["eslint"].setup({
 	capabilities = capabilities,
 })
@@ -27,19 +27,23 @@ lspconfig["tsserver"].setup({
 lspconfig["biome"].setup({
 	capabilities = capabilities,
 })
+--lspconfig["solang"].setup({
+--	capabilities = capabilities,
+--})
 lspconfig["solidity_ls_nomicfoundation"].setup({
 	capabilities = capabilities,
 	solidity = {
 		cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-		filetypes = { "solidity" },
 		root_dir = "foundry.toml",
-		single_file_support = true,
 	},
 })
 
 lspconfig["emmet_ls"].setup({
 	capabilities = capabilities,
 	filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
+})
+lspconfig["rnix"].setup({
+	capabilities = capabilities,
 })
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,
@@ -71,7 +75,7 @@ lspconfig["nil_ls"].setup({
 				binary = "nix",
 				-- The heap memory limit in MiB for `nix` evaluation.
 				-- Example: 1024
-				maxMemoryMB = 10240,
+				maxMemoryMB = 20480,
 				flake = {
 					-- Auto-archiving behavior which may use network.
 					-- Example: true

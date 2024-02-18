@@ -14,6 +14,9 @@ in {
     input = {
       kb_layout = "us";
       kb_options = "caps:super";
+      force_no_accel = "true";
+      accel_profile = "flat";
+      sensitivity = "-0.75";
     };
 
     bindm = [

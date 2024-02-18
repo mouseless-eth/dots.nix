@@ -57,6 +57,7 @@ in {
         function fish_user_key_bindings
         	bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
         	bind -M insert \cf "tmux-sessionizer"
+        	bind -M insert \cw "tmux-windownizer"
 
             # fzf bindings (CTRL-T, CTRL-R, and ALT-C)
             if command -s fzf-share >/dev/null

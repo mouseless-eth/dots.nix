@@ -1,6 +1,7 @@
 {
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -9,6 +10,12 @@
       url = "github:nix-community/nixd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #ollama = {
+    #  url = "github:abysssol/ollama-flake";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #  inputs.utils.follows = "utils";
+    #};
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -27,11 +34,6 @@
 
     xdg-portal-hyprland = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ethereum-nix = {
-      url = "github:nix-community/ethereum.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

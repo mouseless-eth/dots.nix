@@ -49,7 +49,6 @@ in {
     [
       inputs.home-manager.nixosModules.home-manager
     ]
-    #++ services
     ++ features
     ++ services
     ++ bundles;

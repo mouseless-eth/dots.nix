@@ -1,11 +1,8 @@
 {
-  conifg,
   pkgs,
-  lib,
   inputs,
   outputs,
-  sytsem,
-  myLib,
+  system,
   ...
 }: {
   imports = [
@@ -19,9 +16,8 @@
   myNixOS = {
     bundles.general-desktop.enable = true;
     bundles.home-manager.enable = true;
-    #services.reth.enable = true;
+    services.metapod.enable = true;
 
-    #power-management.enable = true;
     pipewire.enable = true;
 
     userName = "mous";
@@ -43,6 +39,7 @@
   networking.hostName = "mini-itx";
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
+  services.xserver.videoDrivers = ["modesetting"];
   boot = {
     kernelModules = ["amdgpu"];
     loader.grub = {
@@ -75,7 +72,7 @@
     opengl = {
       enable = true;
       driSupport = true;
-      extraPackages = with pkgs; [amdvlk];
+      extraPackages = with pkgs; [amdvlk rocmPackages.clr.icd];
     };
   };
 

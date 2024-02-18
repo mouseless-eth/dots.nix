@@ -14,7 +14,7 @@
         extraConfig = ''
           set -g @dracula-show-location false
           set -g @dracula-show-battery false
-          set -g @dracula-show-left-icon " "
+          set -g @dracula-show-left-icon "session"
           set -g @dracula-refresh-rate 30
           set -g @dracula-plugins "cpu-usage ram-usage"
           set -g @dracula-show-left-icon-colors "dark_purple dark_purple"

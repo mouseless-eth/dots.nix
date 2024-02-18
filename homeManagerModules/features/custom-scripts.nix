@@ -1,16 +1,42 @@
 {pkgs, ...}: let
   hms = pkgs.writeShellScriptBin "hms" ''
     pushd $HOME/.snowstorm
+    git add .
     hostname=$(hostname)
-    home-manager --flake .#$USER@$hostname switch
+    home-manager --impure --flake .#$USER@$hostname switch
     popd
   '';
 
   nrs = pkgs.writeShellScriptBin "nrs" ''
     pushd $HOME/.snowstorm
+    git add .
     hostname=$(hostname)
-    sudo nixos-rebuild --flake .#$hostname switch
+    sudo nixos-rebuild --impure --flake .#$hostname switch
     popd
+  '';
+
+  tmux-windownizer = pkgs.writeShellScriptBin "tmux-windownizer" ''
+    #!/usr/bin/env bash
+
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        selected=$(find ~/projects/ ~/work/pimlico/ ~/work/mev/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    fi
+
+    if [[ -z $selected ]];
+    then
+        exit 0
+    fi
+
+    if [[ -z $TMUX ]];
+    then
+        echo "Not running inside TMUX, exiting."
+        exit 1
+    else
+        tmux send-keys C-u
+        tmux send-keys "cd \"$selected\" && clear" C-m
+    fi
   '';
 
   tmux-sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
@@ -27,7 +53,7 @@
         exit 0
     fi
 
-    selected_name=$(basename "$selected" | tr '.' '_')
+    selected_name=$(basename "$selected" | tr '.' '_' | tr '[a-z]' '[A-Z]')
     tmux_running=$(pgrep tmux)
 
     if [[ -z $TMUX ]] && [[ -z $tmux_running ]];
@@ -85,6 +111,7 @@ in {
   home.packages = [
     wifi-menu
     tmux-sessionizer
+    tmux-windownizer
     hms
     nrs
   ];

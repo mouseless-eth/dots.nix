@@ -32,10 +32,10 @@ in {
     nodePackages.typescript-language-server # tsserver
     nodePackages.typescript-language-server # tsserver
     biome
-    #nodePackages.nomicfoundation-solidity-language-server # solidity_ls_nomicfoundation
     emmet-ls # emmet_ls
     lua-language-server # lua_ls
     nixd # nixd
+    rnix-lsp
     nil # nil_ls
 
     # formatting (none-ls plugins)
@@ -57,6 +57,7 @@ in {
 
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-nightly;
 
     viAlias = true;
     vimAlias = true;
@@ -188,6 +189,11 @@ in {
         type = "lua";
         config = readFile ./plugins/lsp/rust-tools.rc.lua;
       }
+      #{
+      #  plugin = rustaceanvim;
+      #  type = "lua";
+      #  config = readFile ./plugins/lsp/rustaceanvim.rc.lua;
+      #}
 
       # Autocompletion
       {

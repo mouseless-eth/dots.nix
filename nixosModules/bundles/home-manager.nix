@@ -1,14 +1,15 @@
-{
-  lib,
-  config,
-  inputs,
-  outputs,
-  myLib,
-  pkgs,
-  ...
-}: let
+{ lib
+, config
+, inputs
+, outputs
+, myLib
+, pkgs
+, ...
+}:
+let
   cfg = config.myNixOS;
-in {
+in
+{
   options.myNixOS = {
     userName = lib.mkOption {
       default = "mous";
@@ -25,7 +26,7 @@ in {
     };
 
     userNixosSettings = lib.mkOption {
-      default = {};
+      default = { };
       description = ''
         NixOS user settings
       '';
@@ -43,7 +44,7 @@ in {
         outputs = inputs.self.outputs;
       };
       users = {
-        ${cfg.userName} = {...}: {
+        ${cfg.userName} = { ... }: {
           imports = [
             (import cfg.userConfig)
             outputs.homeManagerModules.default
@@ -59,9 +60,9 @@ in {
         initialPassword = "1337";
         description = cfg.userName;
         shell = pkgs.fish;
-        extraGroups = ["libvirtd" "networkmanager" "wheel" "video" "audio" "network" "docker" "seat"];
+        extraGroups = [ "renderer" "libvirtd" "networkmanager" "wheel" "video" "audio" "network" "docker" "seat" ];
 
-        packages = [pkgs.home-manager];
+        packages = [ pkgs.home-manager ];
       }
       // cfg.userNixosSettings;
   };

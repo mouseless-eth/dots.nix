@@ -44,10 +44,10 @@ in {
         event = "lock";
         command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
       }
-      {
-        event = "lock";
-        command = "${pkgs.gtklock}/bin/gtklock";
-      }
+      #{
+      #  event = "lock";
+      #  command = "${pkgs.gtklock}/bin/gtklock";
+      #}
     ];
     timeouts = [
       {

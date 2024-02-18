@@ -1,10 +1,9 @@
-{
-  outputs,
-  pkgs,
-  lib,
-  ...
+{ inputs
+, outputs
+, lib
+, ...
 }: {
-  imports = [outputs.homeManagerModules.default];
+  imports = [ outputs.homeManagerModules.default ];
 
   myHomeManager = {
     bundles.general.enable = true;
@@ -31,6 +30,7 @@
         y = 0;
         scale = 2.0;
         transform = 3;
+        workspace = "0";
       }
     ];
   };
@@ -38,7 +38,6 @@
   home = {
     username = "mous";
     homeDirectory = lib.mkDefault "/home/mous";
-    packages = with pkgs; [ollama];
 
     stateVersion = "22.05";
   };
