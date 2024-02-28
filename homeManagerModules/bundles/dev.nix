@@ -50,6 +50,7 @@ in {
     # ts/js
     nodePackages_latest.pnpm
     nodejs_18
+    bun
 
     # evm
     foundry-bin
