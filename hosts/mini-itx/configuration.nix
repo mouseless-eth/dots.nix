@@ -16,7 +16,7 @@
   myNixOS = {
     bundles.general-desktop.enable = true;
     bundles.home-manager.enable = true;
-    services.metapod.enable = true;
+    #services.metapod.enable = true;
 
     pipewire.enable = true;
 
