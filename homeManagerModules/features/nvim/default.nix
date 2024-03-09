@@ -105,6 +105,8 @@ in {
       }
       {
         plugin = nvim-osc52;
+        type = "lua";
+        config = readFile ./plugins/misc/osc52.rc.lua;
       }
 
       # Git

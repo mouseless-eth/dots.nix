@@ -3,7 +3,7 @@ vim.g.mapleader = ","
 
 -- Windows Management.
 -- split window
-vim.keymap.set("n", "sh", ":split<Return><C-w>w", { noremap = true }) -- horizontal
+vim.keymap.set("n", "sh", ":split<Return><C-w>w", { noremap = true })  -- horizontal
 vim.keymap.set("n", "sv", ":vsplit<Return><C-w>w", { noremap = true }) -- vertical
 
 -- move window
@@ -29,4 +29,4 @@ vim.keymap.set("i", "jk", "<esc>", { noremap = true })
 vim.keymap.set("i", "<esc>", "`", { noremap = true })
 
 -- Ctrl+c yanks to system clipboard (and unhighlight text)
-vim.keymap.set("v", "<leader>c", '<cmd>lua require("osc52").copy_visual()<CR>', { desc = "Copy (to clipboard)" })
+vim.keymap.set("v", "<C-c>", require("osc52").copy_visual)
