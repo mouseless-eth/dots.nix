@@ -76,7 +76,7 @@ in {
         config = ''require("nvim-autopairs").setup()'';
       }
       {
-        plugin = fromGitHub "mikesmithgh" "kitty-scrollback.nvim" "v4.0.0" "sha256-hv3o5k85hBaGk8OBRLP7Rf0O9dxiKot6F7/EQelJHHg=";
+        plugin = fromGitHub "mikesmithgh" "kitty-scrollback.nvim" "v4.2.1" "sha256-7hfxW7Ntgi2UqefFygdEFA7LKnR88mdtaJr3OLg/tDs=";
         type = "lua";
         config = ''require('kitty-scrollback').setup()'';
       }
@@ -102,6 +102,9 @@ in {
         plugin = nvim-colorizer-lua;
         type = "lua";
         config = ''require("colorizer").setup()'';
+      }
+      {
+        plugin = nvim-osc52;
       }
 
       # Git

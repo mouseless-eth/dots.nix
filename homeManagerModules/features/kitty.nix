@@ -77,7 +77,7 @@
     listen_on = "unix:/tmp/kitty";
 
     # kitty-scrollback.nvim Kitten alias
-    action_alias = "kitty_scrollback_nvim kitten /nix/store/x0zx62pdfwnllgz7abks0xk66lzjxpnj-vim-pack-dir/pack/myNeovimPackages/start/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
+    action_alias = "kitty_scrollback_nvim kitten /nix/store/m34xk9v4lgcyia8mxca80jn80xcw8i88-vim-pack-dir/pack/myNeovimPackages/start/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py";
 
     # Browse scrollback buffer in nvim
     map = ''

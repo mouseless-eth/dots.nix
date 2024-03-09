@@ -63,9 +63,11 @@
 
       bind -r D neww -c "#{pane_current_path}" "[[ -e TODO.md ]] && nvim TODO.md || nvim ~/.dotfiles/personal/todo.md"
 
-
       # forget the find window.  That is for chumps
       bind-key -r f run-shell "tmux new ~/.local/bin/tmux-sessionizer"
+
+      # kitty-scrollback.nvim related
+      bind [ run-shell 'kitty @ kitten /nix/store/m34xk9v4lgcyia8mxca80jn80xcw8i88-vim-pack-dir/pack/myNeovimPackages/start/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py --env "TMUX=$TMUX" --env "TMUX_PANE=#{pane_id}"'
     '';
   };
 }
