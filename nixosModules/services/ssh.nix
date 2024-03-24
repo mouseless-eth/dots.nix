@@ -1,4 +1,4 @@
-{}: {
+{...}: {
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
   users.users.mous.openssh.authorizedKeys.keys = [

@@ -13,6 +13,7 @@
   myNixOS = {
     bundles.general-desktop.enable = true;
     bundles.home-manager.enable = true;
+    services.ssh.enable = true;
 
     #power-management.enable = true;
     pipewire.enable = true;

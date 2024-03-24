@@ -28,6 +28,9 @@
     nurl
     nix-search-cli
 
+    mullvad-vpn
+    mullvad-browser
+
     slack
     telegram-desktop
     #qutebrowser
