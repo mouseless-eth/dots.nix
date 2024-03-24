@@ -3,12 +3,12 @@
   pkgs,
   ...
 }: let
-  nix-alien-pkgs =
-    import
-    (
-      builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-    )
-    {};
+  #nix-alien-pkgs =
+  #  import
+  #  (
+  #    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  #  )
+  #  {};
 in {
   myHomeManager.git.enable = lib.mkDefault true;
   myHomeManager.tmux.enable = lib.mkDefault true;
@@ -28,6 +28,7 @@ in {
     # misc (tools)
     lazygit
     lazydocker
+    doppler
     docker
     docker-compose
     kubectl
@@ -39,9 +40,10 @@ in {
     wget
     radeontop
     ocl-icd
-    nix-alien-pkgs.nix-alien
+    #nix-alien-pkgs.nix-alien
 
     # make
+    gnupg
     gnumake
     cmake
     clang
@@ -57,6 +59,7 @@ in {
 
     # evm
     foundry-bin
+    solc
 
     # rust
     pkg-config

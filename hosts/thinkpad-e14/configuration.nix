@@ -1,11 +1,7 @@
 {
-  conifg,
   pkgs,
-  lib,
   inputs,
   outputs,
-  sytsem,
-  myLib,
   ...
 }: {
   imports = [
@@ -23,10 +19,15 @@
 
     userName = "mous";
     userConfig = ./home.nix;
+    userNixosSettings = {
+      extraGroups = ["networkmanager" "wheel" "libvirtd" "docker" "audio" "video"];
+    };
   };
 
   networking.hostName = "thinkpad-e14";
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+
+  virtualisation.docker.enable = true;
 
   boot = {
     loader = {
@@ -37,9 +38,6 @@
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
-
-  programs.kdeconnect.enable = true;
-  programs.fish.enable = true;
 
   hardware = {
     opengl = {

@@ -11,7 +11,13 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   services.unbound.enable = true;
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    insertNameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
+    ];
+  };
   programs.light.enable = true;
   security.rtkit.enable = true;
   security.pam.services.login.fprintAuth = false;
@@ -26,10 +32,5 @@
   fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
     enable = true;
-    #defaultFonts = {
-    #  monospace = ["JetBrainsMono Nerd Font Mono"];
-    #  sansSerif = ["JetBrainsMono Nerd Font"];
-    #  serif = ["JetBrainsMono Nerd Font"];
-    #};
   };
 }

@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   outputs,
-  system,
   ...
 }: {
   imports = [
@@ -16,7 +15,7 @@
   myNixOS = {
     bundles.general-desktop.enable = true;
     bundles.home-manager.enable = true;
-    #services.metapod.enable = true;
+    services.ssh.enable = true;
 
     pipewire.enable = true;
 
@@ -28,14 +27,6 @@
   };
 
   virtualisation.docker.enable = true;
-
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = false;
-  users.users.mous.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJX1aaXfCcqZ1mSmnFvfslKCvdE5oAcEs7/J/bQrERYn 97399882+mouseless-eth@users.noreply.github.com"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKrBQFkxipTlhXWyUdxoUcjPdWHCetNFlSYFN7NTs9DM"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFiba4opIUEtiTvZhJh8Q+y8noX+1auj7RBLkzdfOuhd 97399882+mouseless-eth@users.noreply.github.com"
-  ];
 
   networking.hostName = "mini-itx";
   programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
@@ -66,7 +57,6 @@
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
 
-  programs.kdeconnect.enable = true;
   programs.fish.enable = true;
 
   hardware = {

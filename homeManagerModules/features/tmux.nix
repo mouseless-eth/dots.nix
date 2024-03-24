@@ -8,7 +8,12 @@
 
     plugins = with pkgs.tmuxPlugins; [
       sensible
-      yank
+      {
+        plugin = yank;
+        extraConfig = ''
+          set -g @yank_action 'copy-pipe'
+        '';
+      }
       {
         plugin = dracula;
         extraConfig = ''
