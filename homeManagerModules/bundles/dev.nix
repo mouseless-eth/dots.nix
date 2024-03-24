@@ -16,7 +16,7 @@ in {
   # js/ts
   home.sessionVariables.NPM_CONFIG_PREFIX = "$HOME/.local";
   home.sessionVariables.NODE_OPTIONS = "--max_old_space_size=8193";
-  home.sessionVariables.PATH = "$HOME/.local/bin:$PATH";
+  home.sessionVariables.PATH = "$HOME/.local/bin:$HOME/.huff/bin:$PATH";
 
   # rust
   home.sessionVariables.milady = "milady";
@@ -32,7 +32,8 @@ in {
     docker-compose
     kubectl
     doctl
-    vscode
+    doppler
+    gnupg
 
     lz4
     wget
@@ -48,7 +49,9 @@ in {
     libcxxStdenv
 
     # ts/js
+    nodePackages_latest.yarn
     nodePackages_latest.pnpm
+    #nodejs_18.pkgs.pnpm
     nodejs_18
     bun
 

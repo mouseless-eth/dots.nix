@@ -29,4 +29,4 @@ vim.keymap.set("i", "jk", "<esc>", { noremap = true })
 vim.keymap.set("i", "<esc>", "`", { noremap = true })
 
 -- Ctrl+c yanks to system clipboard (and unhighlight text)
-vim.keymap.set("v", "<C-c>", require("osc52").copy_visual)
+vim.keymap.set("v", "<C-c>", '"+y:nohl<CR>', { silent = true, noremap = true })

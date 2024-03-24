@@ -81,6 +81,9 @@ in {
         config = ''require('kitty-scrollback').setup()'';
       }
       {
+        plugin = fromGitHub "mouseless-eth" "vim-huff" "main" "sha256-38aX8YZR/f4UzKf0CI0r7OZBcsLj5pbNJHfzdKJPVaw=";
+      }
+      {
         plugin = fidget-nvim;
         type = "lua";
         config = ''require("fidget").setup()'';
@@ -103,11 +106,11 @@ in {
         type = "lua";
         config = ''require("colorizer").setup()'';
       }
-      {
-        plugin = nvim-osc52;
-        type = "lua";
-        config = readFile ./plugins/misc/osc52.rc.lua;
-      }
+      #{
+      #  plugin = nvim-osc52;
+      #  type = "lua";
+      #  config = readFile ./plugins/misc/osc52.rc.lua;
+      #}
 
       # Git
       {
