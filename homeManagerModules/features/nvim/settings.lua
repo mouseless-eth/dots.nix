@@ -39,12 +39,12 @@ vim.opt.updatetime = 50
 vim.opt.foldcolumn = "1"
 
 -- Tabs and spacing for specific filetypes.
--- vim.api.nvim_command('autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 expandtab')
--- vim.api.nvim_command('autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 expandtab')
--- vim.api.nvim_command('autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2 expandtab')
--- vim.api.nvim_command('autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2 expandtab')
-vim.api.nvim_command('autocmd BufNewFile,BufRead *.sql setlocal tabstop=2 shiftwidth=2 expandtab')
-vim.api.nvim_command('autocmd BufNewFile,BufRead *.nix setlocal tabstop=2 shiftwidth=2 expandtab')
+vim.api.nvim_command("autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 expandtab")
+vim.api.nvim_command("autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 expandtab")
+vim.api.nvim_command("autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2 expandtab")
+vim.api.nvim_command("autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2 expandtab")
+vim.api.nvim_command("autocmd BufNewFile,BufRead *.sql setlocal tabstop=2 shiftwidth=2 expandtab")
+vim.api.nvim_command("autocmd BufNewFile,BufRead *.nix setlocal tabstop=2 shiftwidth=2 expandtab")
 
 -- vim.o.timeoutlen = 150
 
@@ -58,14 +58,14 @@ vim.api.nvim_command('autocmd BufNewFile,BufRead *.nix setlocal tabstop=2 shiftw
 
 -- Highlight text when it is yanked.
 local augroup = vim.api.nvim_create_augroup
-local yank_group = augroup('HighlightYank', {})
+local yank_group = augroup("HighlightYank", {})
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
     group = yank_group,
-    pattern = '*',
+    pattern = "*",
     callback = function()
         vim.highlight.on_yank({
-            higroup = 'IncSearch',
+            higroup = "IncSearch",
             timeout = 40,
         })
     end,

@@ -21,9 +21,9 @@ lspconfig["docker_compose_language_service"].setup({
 lspconfig["dockerls"].setup({
 	capabilities = capabilities,
 })
-lspconfig["tsserver"].setup({
-	capabilities = capabilities,
-})
+-- lspconfig["tsserver"].setup({
+-- 	capabilities = capabilities,
+-- })
 lspconfig["biome"].setup({
 	capabilities = capabilities,
 })

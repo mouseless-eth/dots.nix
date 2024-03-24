@@ -187,6 +187,11 @@ in {
         type = "lua";
         config = readFile ./plugins/lsp/lspsaga.rc.lua;
       }
+      {
+        plugin = typescript-tools-nvim;
+        type = "lua";
+        config = readFile ./plugins/lsp/typescript-tools.rc.lua;
+      }
 
       # Rust specific
       {
