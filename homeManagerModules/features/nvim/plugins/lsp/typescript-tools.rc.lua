@@ -1,6 +1,19 @@
+local on_attach = function(client, bufnr)
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+
+	-- Bindings here
+	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
+	-- Add more bindings as needed
+end
+
 require("typescript-tools").setup({
 	-- on_attach = function() ... end,
-	handlers = {},
+	handlers = {
+		on_attach = on_attach,
+	},
 	settings = {
 		-- spawn additional tsserver instance to calculate diagnostics on it
 		separate_diagnostic_server = true,

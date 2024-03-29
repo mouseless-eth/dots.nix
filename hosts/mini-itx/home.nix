@@ -1,9 +1,9 @@
-{ inputs
-, outputs
-, lib
-, ...
+{
+  outputs,
+  lib,
+  ...
 }: {
-  imports = [ outputs.homeManagerModules.default ];
+  imports = [outputs.homeManagerModules.default];
 
   myHomeManager = {
     bundles.general.enable = true;

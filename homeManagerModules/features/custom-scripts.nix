@@ -7,6 +7,14 @@
     popd
   '';
 
+  ghs = pkgs.writeShellScriptBin "ghs" ''
+    echo 'eval "$(gh copilot alias -- bash)"'
+  '';
+
+  #co-pr = pkgs.writeShellScriptBin "co-pr" ''
+  #  !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  #'';
+
   nrs = pkgs.writeShellScriptBin "nrs" ''
     pushd $HOME/.snowstorm
     git add .
@@ -31,11 +39,12 @@
 
     if [[ -z $TMUX ]];
     then
-        echo "Not running inside TMUX, exiting."
-        exit 1
+        cd $selected && clear
+        exit 0
     else
         tmux send-keys C-u
         tmux send-keys "cd \"$selected\" && clear" C-m
+        tmux rename-window "$(basename "$selected")"
     fi
   '';
 
@@ -109,6 +118,7 @@
   '';
 in {
   home.packages = [
+    #co-pr
     wifi-menu
     tmux-sessionizer
     tmux-windownizer

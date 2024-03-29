@@ -3,12 +3,12 @@
   pkgs,
   ...
 }: let
-  #nix-alien-pkgs =
-  #  import
-  #  (
-  #    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-  #  )
-  #  {};
+  nix-alien-pkgs =
+    import
+    (
+      builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+    )
+    {};
 in {
   myHomeManager.git.enable = lib.mkDefault true;
   myHomeManager.tmux.enable = lib.mkDefault true;
@@ -24,6 +24,9 @@ in {
   home.sessionVariables.OPENSSL_DEV = pkgs.openssl.dev;
   home.sessionVariables.LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
 
+  # evm related
+  home.sessionVariables.DETERMINISTIC_DEPLOYER = "0x4e59b44847b379578588920ca78fbf26c0b4956c";
+
   home.packages = with pkgs; [
     # misc (tools)
     lazygit
@@ -35,12 +38,13 @@ in {
     doctl
     doppler
     gnupg
+    gh
 
     lz4
     wget
     radeontop
     ocl-icd
-    #nix-alien-pkgs.nix-alien
+    nix-alien-pkgs.nix-alien
 
     # make
     gnupg
@@ -51,6 +55,7 @@ in {
     libcxxStdenv
 
     # ts/js
+    deno
     nodePackages_latest.yarn
     nodePackages_latest.pnpm
     #nodejs_18.pkgs.pnpm
