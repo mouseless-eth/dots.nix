@@ -11,12 +11,9 @@
     echo 'eval "$(gh copilot alias -- bash)"'
   '';
 
-  co-pr = pkgs.writeShellScriptBin "co-pr" ''
-      function co-pr --argument id
-        git fetch origin pull/(echo $id)/head:pr/(echo $id)
-        git checkout pr/(echo $id)
-    end
-  '';
+  #co-pr = pkgs.writeShellScriptBin "co-pr" ''
+  #  !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  #'';
 
   nrs = pkgs.writeShellScriptBin "nrs" ''
     pushd $HOME/.snowstorm
@@ -121,7 +118,7 @@
   '';
 in {
   home.packages = [
-    co-pr
+    #co-pr
     wifi-menu
     tmux-sessionizer
     tmux-windownizer

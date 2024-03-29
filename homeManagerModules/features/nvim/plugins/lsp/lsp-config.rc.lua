@@ -2,6 +2,17 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
+local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+
+    -- Bindings here
+    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
+    -- Add more bindings as needed
+end
+
 --lspconfig["rust_analyzer"].setup({
 --	capabilities = capabilities,
 --	settings = {
@@ -13,18 +24,22 @@ local lspconfig = require("lspconfig")
 --	},
 --})
 lspconfig["eslint"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
 })
 lspconfig["docker_compose_language_service"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
 })
 lspconfig["dockerls"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
 })
 -- lspconfig["tsserver"].setup({
 -- 	capabilities = capabilities,
 -- })
 lspconfig["biome"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
 })
 
@@ -40,6 +55,7 @@ lspconfig["biome"].setup({
 --	capabilities = capabilities,
 --})
 lspconfig["solidity_ls_nomicfoundation"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
     solidity = {
         cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
@@ -48,19 +64,20 @@ lspconfig["solidity_ls_nomicfoundation"].setup({
 })
 
 lspconfig["emmet_ls"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
 })
-lspconfig["rnix"].setup({
-    capabilities = capabilities,
-})
 lspconfig["lua_ls"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
 })
 lspconfig["nixd"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
 })
 lspconfig["nil_ls"].setup({
+    on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         ["nil"] = {

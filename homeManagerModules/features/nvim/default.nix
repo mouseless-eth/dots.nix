@@ -179,16 +179,21 @@ in {
         type = "lua";
         config = readFile ./plugins/lsp/none-ls.rc.lua;
       }
+      {
+        plugin = fromGitHub "folke" "trouble.nvim" "cb2d3b2dd99e99a1395d50d7e5fc192a2203a670" "sha256-+3ce7+PqSN5ZtUufd3CKYQNd37V6piWqCuMMHINZ5DE";
+        type = "lua";
+        config = readFile ./plugins/lsp/trouble.rc.lua;
+      }
       #{
       #  plugin = trouble-nvim;
       #  type = "lua";
       #  config = readFile ./plugins/lsp/trouble.rc.lua;
       #}
-      {
-        plugin = lspsaga-nvim;
-        type = "lua";
-        config = readFile ./plugins/lsp/lspsaga.rc.lua;
-      }
+      #{
+      #  plugin = lspsaga-nvim;
+      #  type = "lua";
+      #  config = readFile ./plugins/lsp/lspsaga.rc.lua;
+      #}
       {
         plugin = typescript-tools-nvim;
         type = "lua";
