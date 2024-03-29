@@ -5,7 +5,7 @@
 }: {
   myHomeManager.waybar.enable = lib.mkDefault true;
   myHomeManager.hyprpaper.enable = lib.mkDefault true;
-  myHomeManager.dunst.enable = lib.mkDefault true;
+  #myHomeManager.dunst.enable = lib.mkDefault true;
   myHomeManager.rofi.enable = lib.mkDefault true;
 
   myHomeManager.nvim.enable = lib.mkDefault true;

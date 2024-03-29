@@ -35,7 +35,6 @@ in {
     emmet-ls # emmet_ls
     lua-language-server # lua_ls
     nixd # nixd
-    rnix-lsp
     nil # nil_ls
 
     # formatting (none-ls plugins)

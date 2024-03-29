@@ -39,10 +39,10 @@ vim.opt.updatetime = 50
 vim.opt.foldcolumn = "1"
 
 -- Tabs and spacing for specific filetypes.
-vim.api.nvim_command("autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 expandtab")
-vim.api.nvim_command("autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 expandtab")
-vim.api.nvim_command("autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2 expandtab")
-vim.api.nvim_command("autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2 expandtab")
+-- vim.api.nvim_command("autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 expandtab")
+-- vim.api.nvim_command("autocmd BufNewFile,BufRead *.jsx setlocal tabstop=2 shiftwidth=2 expandtab")
+-- vim.api.nvim_command("autocmd BufNewFile,BufRead *.js setlocal tabstop=2 shiftwidth=2 expandtab")
+-- vim.api.nvim_command("autocmd BufNewFile,BufRead *.ts setlocal tabstop=2 shiftwidth=2 expandtab")
 vim.api.nvim_command("autocmd BufNewFile,BufRead *.sql setlocal tabstop=2 shiftwidth=2 expandtab")
 vim.api.nvim_command("autocmd BufNewFile,BufRead *.nix setlocal tabstop=2 shiftwidth=2 expandtab")
 
