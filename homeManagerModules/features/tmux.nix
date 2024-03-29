@@ -75,8 +75,8 @@
       bind [ run-shell 'kitty @ kitten /nix/store/m34xk9v4lgcyia8mxca80jn80xcw8i88-vim-pack-dir/pack/myNeovimPackages/start/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py --env "TMUX=$TMUX" --env "TMUX_PANE=#{pane_id}"'
 
       # osc52 related
-      set -s set-clipboard external
-      set -g allow-passthrough on
+      # set -s set-clipboard external
+      # set -g allow-passthrough on
     '';
   };
 }

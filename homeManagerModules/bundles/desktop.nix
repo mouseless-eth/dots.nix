@@ -34,6 +34,7 @@
     slack
     telegram-desktop
     #qutebrowser
+    firefox
     chromium
     discord
 

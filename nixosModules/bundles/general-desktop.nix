@@ -23,6 +23,8 @@
   security.pam.services.login.fprintAuth = false;
   security.pam.services.swaylock = {};
 
+  services.mullvad-vpn.enable = true;
+
   fonts.packages = with pkgs; [
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka" "FiraCode"];})
     cm_unicode
