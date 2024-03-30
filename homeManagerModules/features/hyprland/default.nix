@@ -1,10 +1,11 @@
-{ pkgs
-, config
-, lib
-, inputs
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
 }: {
-  imports = [ ./hyprlock.nix ./hypridle.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix ];
+  imports = [./hyprlock.nix ./hypridle.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix];
 
   wayland.windowManager.hyprland = {
     plugins = [
@@ -36,6 +37,7 @@
         "dunst"
         "hyprpaper"
         "$HOME/.config/hypr/scripts/workspacer/workspace_listener.sh"
+        "hypridle"
       ];
 
       general = {
@@ -55,24 +57,22 @@
 
       monitor =
         map
-          (
-            m:
-            let
-              resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-              position = "${toString m.x}x${toString m.y}";
-              scale = "${toString m.scale}";
-              transform = "${toString m.transform}";
-            in
-            "${m.name}, ${resolution}, ${position}, ${scale}, transform, ${transform}"
-          )
-          (config.myHomeManager.monitors);
+        (
+          m: let
+            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+            position = "${toString m.x}x${toString m.y}";
+            scale = "${toString m.scale}";
+            transform = "${toString m.transform}";
+          in "${m.name}, ${resolution}, ${position}, ${scale}, transform, ${transform}"
+        )
+        (config.myHomeManager.monitors);
 
       workspace =
         map
-          (
-            m: "${m.name},${m.workspace}"
-          )
-          (lib.filter (m: m.workspace != null) config.myHomeManager.monitors);
+        (
+          m: "${m.name},${m.workspace}"
+        )
+        (lib.filter (m: m.workspace != null) config.myHomeManager.monitors);
 
       decoration = {
         #active_opacity = 0.98;
@@ -160,7 +160,7 @@
     xwaylandvideobridge
 
     (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     }))
   ];
 }
