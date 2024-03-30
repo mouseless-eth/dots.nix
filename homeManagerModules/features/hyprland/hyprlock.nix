@@ -1,14 +1,12 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 }: {
   imports = [
     inputs.hyprlock.homeManagerModules.default
   ];
   programs.hyprlock = {
     enable = true;
-    package = pkgs.hyprlock;
     backgrounds = [
       {
         path = "screenshot";
@@ -18,9 +16,9 @@
     ];
     input-fields = [
       {
-        outer_color = "rgb(f2faea)";
-        inner_color = "rgb(f2faea)";
-        font_color = "rgb(98eca4)";
+        outer_color = "rgb(eae6e5)";
+        inner_color = "rgb(eae6e5)";
+        font_color = "rgb(a1cca5)";
         size = {
           width = 600;
           height = 80;

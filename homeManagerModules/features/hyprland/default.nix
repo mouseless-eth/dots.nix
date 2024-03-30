@@ -1,11 +1,10 @@
-{
-  pkgs,
-  config,
-  lib,
-  inputs,
-  ...
+{ pkgs
+, config
+, lib
+, inputs
+, ...
 }: {
-  imports = [./hyprlock.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix];
+  imports = [ ./hyprlock.nix ./hypridle.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix ];
 
   wayland.windowManager.hyprland = {
     plugins = [
@@ -56,27 +55,29 @@
 
       monitor =
         map
-        (
-          m: let
-            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-            position = "${toString m.x}x${toString m.y}";
-            scale = "${toString m.scale}";
-            transform = "${toString m.transform}";
-          in "${m.name}, ${resolution}, ${position}, ${scale}, transform, ${transform}"
-        )
-        (config.myHomeManager.monitors);
+          (
+            m:
+            let
+              resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+              position = "${toString m.x}x${toString m.y}";
+              scale = "${toString m.scale}";
+              transform = "${toString m.transform}";
+            in
+            "${m.name}, ${resolution}, ${position}, ${scale}, transform, ${transform}"
+          )
+          (config.myHomeManager.monitors);
 
       workspace =
         map
-        (
-          m: "${m.name},${m.workspace}"
-        )
-        (lib.filter (m: m.workspace != null) config.myHomeManager.monitors);
+          (
+            m: "${m.name},${m.workspace}"
+          )
+          (lib.filter (m: m.workspace != null) config.myHomeManager.monitors);
 
       decoration = {
-        active_opacity = 0.98;
-        inactive_opacity = 0.95;
-        fullscreen_opacity = 1;
+        #active_opacity = 0.98;
+        #inactive_opacity = 0.95;
+        #fullscreen_opacity = 1;
         rounding = 5;
         blur = {
           enabled = true;
@@ -99,7 +100,7 @@
       };
 
       windowrulev2 = [
-        #"bordercolor rgb(FF5555),fullscreen:1"
+        "bordercolor rgb(FF5555),fullscreen:1"
         #"opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
         #"noanim,class:^(xwaylandvideobridge)$"
         #"nofocus,class:^(xwaylandvideobridge)$"
@@ -159,7 +160,7 @@
     xwaylandvideobridge
 
     (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     }))
   ];
 }
