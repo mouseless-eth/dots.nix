@@ -16,7 +16,6 @@
     bundles.general-desktop.enable = true;
     bundles.home-manager.enable = true;
     services.ssh.enable = true;
-    services.resolved.enable = true;
 
     pipewire.enable = true;
 

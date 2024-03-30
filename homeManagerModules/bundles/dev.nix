@@ -19,12 +19,12 @@ in {
   home.sessionVariables.PATH = "$HOME/.local/bin:$HOME/.huff/bin:$PATH";
 
   # rust
-  home.sessionVariables.milady = "milady";
   home.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   home.sessionVariables.OPENSSL_DEV = pkgs.openssl.dev;
   home.sessionVariables.LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
 
   # evm related
+  home.sessionVariables.milady = "milady";
   home.sessionVariables.DETERMINISTIC_DEPLOYER = "0x4e59b44847b379578588920ca78fbf26c0b4956c";
 
   home.packages = with pkgs; [
@@ -70,7 +70,9 @@ in {
     pkg-config
     openssl.dev
     rustup
-    #rust-analzyer
     openssl
+
+    # other langs
+    #python3Full
   ];
 }

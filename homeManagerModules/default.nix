@@ -2,6 +2,7 @@
   config,
   lib,
   myLib,
+  inputs,
   ...
 }: let
   cfg = config.myHomeManager;
@@ -43,7 +44,8 @@
     (myLib.filesIn ./services);
 in {
   imports =
-    []
+    [
+    ]
     ++ features
     #++ services
     ++ bundles;

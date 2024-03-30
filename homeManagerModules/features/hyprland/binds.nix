@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   mod = "SUPER";
   modShift = "SUPER_SHIFT";
 
@@ -20,8 +15,8 @@ in {
     };
 
     bindm = [
-      "SUPER,mouse:272,movewindow"
-      "SUPER,mouse:273,resizewindow"
+      "${mod}, mouse:272, movewindow"
+      "${mod}, mouse:273, resizewindow"
     ];
 
     bind = [
@@ -44,6 +39,13 @@ in {
 
       # Misc.
       "${modShift}, e, exit"
+
+      # workspacer
+      "${mod}, Y, exec , $HOME/.config/hypr/scripts/workspacer/workspaced.py"
+      "${mod}, V, togglefloating,"
+      "${mod}, R, exec, $menu"
+      "${mod}, P, pseudo,"
+      "${mod}, T, togglesplit,"
 
       # Window management.
       "${mod}, f, fullscreen, 1"
@@ -89,7 +91,9 @@ in {
       "${modShift}, 0, movetoworkspacesilent, 10"
 
       # misc
-      "${modShift}, X, exec, swaylock --screenshots --fade-in 0.2 --clock --timestr %H:%M:%S --datestr %a --effect-pixelate 2 --effect-blur 4x8 -u --indicator-radius 100 --ring-ver-color aabbcc00 --text-ver-color aabbcc00 --inside-ver-color aabbcc00 --line-ver-color aabbcc00"
+      "${modShift}, X, exec, hyprlock"
+      "${mod}, S, togglespecialworkspace, magic"
+      "${modShift}, S, movetoworkspace, special:magic"
     ];
   };
 }

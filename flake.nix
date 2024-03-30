@@ -4,6 +4,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     nixd = {
@@ -31,6 +32,18 @@
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "hyprland";
+    };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "hyprland";
+    };
 
     xdg-portal-hyprland = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
@@ -38,9 +51,10 @@
     };
   };
 
-  outputs = {...} @ inputs: let
-    myLib = import ./myLib/default.nix {inherit inputs;};
-  in
+  outputs = { ... } @ inputs:
+    let
+      myLib = import ./myLib/default.nix { inherit inputs; };
+    in
     with myLib; {
       nixosConfigurations = {
         mini-itx = mkSystem ./hosts/mini-itx/configuration.nix;
