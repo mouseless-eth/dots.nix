@@ -3,7 +3,7 @@
 , ...
 }: {
   imports = [
-    inputs.hypridle.homeManagerModules.default
+    inputs.hypridle.homeManagerModules.hypridle
   ];
   services.hypridle = {
     enable = true;
