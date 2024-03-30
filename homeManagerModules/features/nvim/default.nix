@@ -94,6 +94,11 @@ in
         config = readFile ./plugins/tokyonight.rc.lua;
       }
       {
+        plugin = lspsaga-nvim;
+        type = "lua";
+        config = readFile ./plugins/lsp/saga.rc.lua;
+      }
+      {
         plugin = trouble-nvim;
         type = "lua";
         config = readFile ./plugins/lsp/trouble.rc.lua;
@@ -129,6 +134,11 @@ in
         plugin = gitsigns-nvim;
         type = "lua";
         config = readFile ./plugins/misc/gitsigns.rc.lua;
+      }
+      {
+        plugin = octo-nvim;
+        type = "lua";
+        config = ''require("octo").setup()'';
       }
 
       # Meta navigation
