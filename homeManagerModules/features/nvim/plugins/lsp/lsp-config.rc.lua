@@ -4,35 +4,35 @@ local lspconfig = require("lspconfig")
 
 -- helper for binds
 local nmap = function(bufnr, keys, func, desc)
-	if desc then
-		desc = "LSP: " .. desc
-	end
+    if desc then
+        desc = "LSP: " .. desc
+    end
 
-	vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 end
 
 local on_attach = function(client, bufnr)
-	nmap(bufnr, "gr", "<cmd>Lspsaga finder ref<CR>")
-	nmap(bufnr, "<leader>sd", vim.lsp.buf.declaration)
-	nmap(bufnr, "<leader>sD", "<cmd>Lspsaga finder def<CR>")
-	nmap(bufnr, "<leader>sI", "<cmd>Lspsaga finder imp<CR>")
-	nmap(bufnr, "<leader>sa", "<cmd>Lspsaga code_action<CR>")
-	nmap(bufnr, "<leader>sr", "<cmd>Lspsaga rename ++project<CR>")
-	nmap(bufnr, "<leader>d", "<cmd>Lspsaga finder tyd<CR>")
-	nmap(bufnr, "<leader>sp", "<cmd>Lspsaga peek_definition<CR>")
+    nmap(bufnr, "gr", "<cmd>Lspsaga finder ref<CR>")
+    nmap(bufnr, "<leader>sd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    nmap(bufnr, "<leader>sD", "<cmd>Lspsaga finder def<CR>")
+    nmap(bufnr, "<leader>sI", "<cmd>Lspsaga finder imp<CR>")
+    nmap(bufnr, "<leader>sa", "<cmd>Lspsaga code_action<CR>")
+    nmap(bufnr, "<leader>sr", "<cmd>Lspsaga rename ++project<CR>")
+    nmap(bufnr, "<leader>d", "<cmd>Lspsaga finder tyd<CR>")
+    nmap(bufnr, "<leader>sp", "<cmd>Lspsaga peek_definition<CR>")
 
-	-- Diagnostic
-	nmap(bufnr, "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-	nmap(bufnr, "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-	nmap(bufnr, "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-	nmap(bufnr, "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+    -- Diagnostic
+    nmap(bufnr, "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+    nmap(bufnr, "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+    nmap(bufnr, "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+    nmap(bufnr, "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 
-	-- Toggle Outline
-	nmap(bufnr, "<leader>su", "<cmd>Lspsaga outline<CR>")
+    -- Toggle Outline
+    nmap(bufnr, "<leader>su", "<cmd>Lspsaga outline<CR>")
 
-	-- Callhierarchy
-	nmap(bufnr, "<leader>si", "<cmd>Lspsaga incoming_calls<CR>")
-	nmap(bufnr, "<leader>so", "<cmd>Lspsaga outgoing_calls<CR>")
+    -- Callhierarchy
+    nmap(bufnr, "<leader>si", "<cmd>Lspsaga incoming_calls<CR>")
+    nmap(bufnr, "<leader>so", "<cmd>Lspsaga outgoing_calls<CR>")
 end
 
 -- Global mappings.
@@ -81,23 +81,23 @@ end
 --	},
 --})
 lspconfig["eslint"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["docker_compose_language_service"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["dockerls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 -- lspconfig["tsserver"].setup({
 -- 	capabilities = capabilities,
 -- })
 lspconfig["biome"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 --lspconfig["denols"].setup({
@@ -112,31 +112,33 @@ lspconfig["biome"].setup({
 --	capabilities = capabilities,
 --})
 lspconfig["solidity_ls_nomicfoundation"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	solidity = {
-		cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-		root_dir = "foundry.toml",
-	},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    solidity = {
+        cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
+        root_dir = "foundry.toml",
+    },
 })
 
 lspconfig["emmet_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
 })
 lspconfig["lua_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["nixd"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["nil_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    capabilities = capabilities,
 })
 
 --vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
