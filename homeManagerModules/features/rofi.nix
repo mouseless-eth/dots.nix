@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   xdg.configFile."/home/mous/.config/rofi/colors/dracula.rasi".text = ''
       /**
      *
@@ -644,9 +648,6 @@
       			systemctl poweroff
       		elif [[ $1 == '--reboot' ]]; then
       			systemctl reboot
-      		elif [[ $1 == '--suspend' ]]; then
-      			mpc -q pause
-      			systemctl suspend && swaylock
       		elif [[ $1 == '--logout' ]]; then
       			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
       				openbox --exit

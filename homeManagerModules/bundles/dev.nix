@@ -16,7 +16,8 @@ in {
   # js/ts
   home.sessionVariables.NPM_CONFIG_PREFIX = "$HOME/.local";
   home.sessionVariables.NODE_OPTIONS = "--max_old_space_size=8193";
-  home.sessionVariables.PATH = "$HOME/.local/bin:$HOME/.huff/bin:$PATH";
+  home.sessionVariables.BUN_INSTALL = "$HOME/.bun";
+  home.sessionVariables.PATH = "$HOME/.local/bin:$HOME/.huff/bin:$HOME/.bun/bin:$PATH";
 
   # rust
   home.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
@@ -74,5 +75,8 @@ in {
 
     # other langs
     #python3Full
+    python312Packages.pip
+    python312Packages.virtualenv
+    chatgpt-cli
   ];
 }

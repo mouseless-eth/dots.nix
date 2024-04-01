@@ -5,7 +5,7 @@
   inputs,
   ...
 }: {
-  imports = [./hyprlock.nix ./hypridle.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix];
+  imports = [./hyprpaper.nix ./hyprlock-login.nix ./hyprlock.nix ./hypridle.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix];
 
   wayland.windowManager.hyprland = {
     plugins = [
@@ -38,6 +38,7 @@
         "hyprpaper"
         "$HOME/.config/hypr/scripts/workspacer/workspace_listener.sh"
         "hypridle"
+        "hyprlock -c ~/.config/hypr/hyprlock-login.conf"
       ];
 
       general = {

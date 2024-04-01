@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  myNixOS.sddm.enable = lib.mkDefault true;
   myNixOS.services.resolved.enable = true;
 
   time.timeZone = "Europe/Helsinki";
@@ -15,9 +14,9 @@
   programs.light.enable = true;
   security.rtkit.enable = true;
   security.pam.services.login.fprintAuth = false;
-  security.pam.services.swaylock = {};
 
   services.mullvad-vpn.enable = true;
+  services.getty.autologinUser = "mous";
 
   fonts.packages = with pkgs; [
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka" "FiraCode"];})

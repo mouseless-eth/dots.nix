@@ -41,6 +41,11 @@ in {
       fish
       */
       ''
+        # Autostart Hyprland when logged in from tty1
+        if test -z "$DISPLAY" -a (tty) = "/dev/tty1"
+          exec Hyprland
+        end
+
         # Kitty integration
         set --global KITTY_INSTALLATION_DIR "${pkgs.kitty}/lib/kitty"
         set --global KITTY_SHELL_INTEGRATION enabled
