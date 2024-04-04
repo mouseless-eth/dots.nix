@@ -29,7 +29,6 @@
   virtualisation.docker.enable = true;
 
   networking.hostName = "mini-itx";
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   services.xserver.videoDrivers = ["modesetting"];
   boot = {

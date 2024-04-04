@@ -30,7 +30,6 @@ in {
 
   home.packages = with pkgs; [
     # misc (tools)
-    lazygit
     lazydocker
     doppler
     docker
@@ -39,7 +38,11 @@ in {
     doctl
     doppler
     gnupg
+
+    # git
     gh
+    lazygit
+    gh-copilot
 
     lz4
     wget

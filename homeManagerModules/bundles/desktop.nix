@@ -30,6 +30,7 @@
     mullvad-browser
 
     slack
+    _1password-gui
     telegram-desktop
     #qutebrowser
     firefox

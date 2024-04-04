@@ -26,7 +26,6 @@
   };
 
   networking.hostName = "thinkpad-e14";
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   virtualisation.docker.enable = true;
 

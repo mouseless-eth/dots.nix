@@ -30,6 +30,7 @@ in {
       n = "nvim";
       dots = "cd $HOME/.snowstorm";
       ns = "nix-search";
+      gp = "git pull";
     };
     functions = {
       fish_greeting = "";

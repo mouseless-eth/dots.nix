@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   mod = "SUPER";
   modShift = "SUPER_SHIFT";
 
@@ -9,9 +13,6 @@ in {
     input = {
       kb_layout = "us";
       kb_options = "caps:super";
-      #force_no_accel = "true";
-      #accel_profile = "flat";
-      #sensitivity = "-0.75";
     };
 
     bindm = [
@@ -39,6 +40,7 @@ in {
 
       # Misc.
       "${modShift}, e, exit"
+      "${mod}, W, hyprexpo:expo, toggle"
 
       # workspacer
       "${mod}, Y, exec , $HOME/.config/hypr/scripts/workspacer/workspaced.py"
