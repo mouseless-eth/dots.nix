@@ -30,6 +30,7 @@ in {
 
   home.packages = with pkgs; [
     # misc (tools)
+    pipx
     lazydocker
     doppler
     docker
@@ -38,6 +39,7 @@ in {
     doctl
     doppler
     gnupg
+    nix-init
 
     # git
     gh

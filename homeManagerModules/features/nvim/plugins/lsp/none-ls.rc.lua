@@ -13,7 +13,7 @@ null_ls.setup({
 
 		-- solidity
 		null_ls.builtins.formatting.forge_fmt,
-		null_ls.builtins.diagnostics.solhint,
+		-- null_ls.builtins.diagnostics.solhint,
 
 		-- ts/js
 		null_ls.builtins.formatting.biome,

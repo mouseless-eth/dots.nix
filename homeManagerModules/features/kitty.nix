@@ -85,6 +85,8 @@
     '';
     # Browse output of the last shell command in nvim
 
+    paste_actions = "no-op";
+
     # Show clicked command output in nvim
     #mouse_map = "ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output";
   };

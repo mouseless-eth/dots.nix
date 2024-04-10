@@ -35,23 +35,24 @@ vim.keymap.set("n", "<leader>so", "<cmd>Lspsaga outgoing_calls<CR>")
 --	},
 --})
 lspconfig["eslint"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["docker_compose_language_service"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["dockerls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 --lspconfig["tsserver"].setup({
---	capabilities = capabilities,
+--    on_attach = on_attach,
+--    capabilities = capabilities,
 --})
 lspconfig["biome"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 --lspconfig["denols"].setup({
@@ -66,31 +67,31 @@ lspconfig["biome"].setup({
 --	capabilities = capabilities,
 --})
 lspconfig["solidity_ls_nomicfoundation"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	solidity = {
-		cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-		root_dir = "foundry.toml",
-	},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    solidity = {
+        cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
+        root_dir = "foundry.toml",
+    },
 })
 
 lspconfig["emmet_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
 })
 lspconfig["lua_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["nixd"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 lspconfig["nil_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    capabilities = capabilities,
 })
 
 --vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
