@@ -30,6 +30,7 @@ in {
 
   home.packages = with pkgs; [
     # misc (tools)
+    act
     pipx
     lazydocker
     doppler

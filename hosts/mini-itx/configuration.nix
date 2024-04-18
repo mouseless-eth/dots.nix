@@ -39,19 +39,19 @@
     };
   };
 
-  fileSystems = {
-    "/mount/nvme0n1-2tb" = {
-      device = "/dev/disk/by-uuid/b12343e8-172e-45af-ac13-d64088bd0d2b";
-      fsType = "ext4";
-      depends = [
-        "/"
-      ];
-    };
-  };
+  #fileSystems = {
+  #  "/mount/nvme0n1-2tb" = {
+  #    device = "/dev/disk/by-uuid/b12343e8-172e-45af-ac13-d64088bd0d2b";
+  #    fsType = "ext4";
+  #    depends = [
+  #      "/"
+  #    ];
+  #  };
+  #};
 
-  systemd.tmpfiles.rules = [
-    "d /mount/nvme0n1-2tb 0777 root root -"
-  ];
+  #systemd.tmpfiles.rules = [
+  #  "d /mount/nvme0n1-2tb 0777 root root -"
+  #];
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;

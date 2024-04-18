@@ -13,6 +13,7 @@
 in {
   home.packages = with pkgs.fishPlugins; [
     done
+    fzf
   ];
 
   # direnv (works with devenv for shell hooks)
@@ -65,12 +66,14 @@ in {
         	bind -M insert \cf "tmux-sessionizer"
         	bind -M insert \cw "tmux-windownizer"
 
+          # auto accept
+          bind \t forward-word
+          bind \t\t complete
+
             # fzf bindings (CTRL-T, CTRL-R, and ALT-C)
             if command -s fzf-share >/dev/null
               source (fzf-share)/key-bindings.fish
             end
-
-            fzf_key_bindings
         end
 
         function last_history_item
