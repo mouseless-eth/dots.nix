@@ -1,5 +1,5 @@
 -- Set Leader.
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 -- Windows Management.
 -- split window

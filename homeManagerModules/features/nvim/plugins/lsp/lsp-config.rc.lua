@@ -1,74 +1,105 @@
 -- Set up lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
-vim.keymap.set("n", "gr", "<cmd>Lspsaga finder ref<CR>")
-vim.keymap.set("n", "<leader>sd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-vim.keymap.set("n", "<leader>sD", "<cmd>Lspsaga finder def<CR>")
-vim.keymap.set("n", "<leader>sI", "<cmd>Lspsaga finder imp<CR>")
-vim.keymap.set("n", "<leader>sa", "<cmd>Lspsaga code_action<CR>")
-vim.keymap.set("n", "<leader>sr", "<cmd>Lspsaga rename ++project<CR>")
-vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga finder tyd<CR>")
-vim.keymap.set("n", "<leader>sp", "<cmd>Lspsaga peek_definition<CR>")
+local map = vim.keymap.set
 
--- Diagnostic
-vim.keymap.set("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-vim.keymap.set("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+local on_attach = function(client, bufnr)
+    local function opts(desc)
+        return { buffer = bufnr, desc = "LSP " .. desc }
+    end
 
--- Toggle Outline
-vim.keymap.set("n", "<leader>su", "<cmd>Lspsaga outline<CR>")
+    map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
+    map("n", "gd", vim.lsp.buf.definition, opts("Go to definition"))
+    map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
+    map("n", ",sh", vim.lsp.buf.signature_help, opts("Show signature help"))
+    map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
+    map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
 
--- Callhierarchy
-vim.keymap.set("n", "<leader>si", "<cmd>Lspsaga incoming_calls<CR>")
-vim.keymap.set("n", "<leader>so", "<cmd>Lspsaga outgoing_calls<CR>")
+    map("n", "<leader>wl", function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts("List workspace folders"))
 
---lspconfig["rust_analyzer"].setup({
---	capabilities = capabilities,
---	settings = {
---		["rust-analyzer"] = {
---			diagnostics = {
---				enable = false,
---			},
---		},
---	},
---})
-lspconfig["eslint"].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
+    map("n", ",sd", vim.lsp.buf.type_definition, opts("Go to type definition"))
+
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
+    map("n", "gr", vim.lsp.buf.references, opts("Show references"))
+
+    -- saga
+    vim.keymap.set("n", ",sr", "<cmd>Lspsaga rename ++project<CR>")
+    vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+    vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+    -- setup signature popup
+    if client.server_capabilities.signatureHelpProvider then
+        map("n", "K", vim.lsp.buf.hover, opts("hover information"))
+    end
+end
+
+local on_init = function(client, _)
+    if client.supports_method("textDocument/semanticTokens") then
+        client.server_capabilities.semanticTokensProvider = nil
+    end
+end
+
+capabilities = vim.tbl_deep_extend(
+    "force",
+    vim.lsp.protocol.make_client_capabilities(),
+    require("cmp_nvim_lsp").default_capabilities()
+)
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { "markdown", "plaintext" },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    labelDetailsSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = {
+        properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+        },
+    },
+}
+
 lspconfig["docker_compose_language_service"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = on_init,
 })
+
 lspconfig["dockerls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = on_init,
 })
---lspconfig["tsserver"].setup({
---    on_attach = on_attach,
---    capabilities = capabilities,
---})
-lspconfig["biome"].setup({
+
+require("typescript-tools").setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = on_init,
 })
 
---lspconfig["denols"].setup({
---    capabilities = capabilities,
---})
----- deno related
---vim.g.markdown_fenced_languages = {
---    "ts=typescript",
---}
+-- lspconfig["tsserver"].setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     on_init = on_init,
+--
+--     init_options = {
+--         preferences = {
+--             disableSuggestions = true,
+--         },
+--     },
+-- })
 
---lspconfig["solang"].setup({
---	capabilities = capabilities,
---})
 lspconfig["solidity_ls_nomicfoundation"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = on_init,
+
     solidity = {
         cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
         root_dir = "foundry.toml",
@@ -78,22 +109,33 @@ lspconfig["solidity_ls_nomicfoundation"].setup({
 lspconfig["emmet_ls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = on_init,
+
     filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
 })
+
 lspconfig["lua_ls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    on_init = on_init,
+
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand("/home/mous/.snowstorm/homeManagerModules/features/nvim/plugins")] = true,
+                },
+                maxPreload = 100000,
+                preloadFileSize = 10000,
+            },
+        },
+    },
 })
-lspconfig["nixd"].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
+
 lspconfig["nil_ls"].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    capabilities = capabilities,
 })
-
---vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]])
--- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
--- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]

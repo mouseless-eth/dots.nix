@@ -2,14 +2,7 @@
   lib,
   pkgs,
   ...
-}: let
-  nix-alien-pkgs =
-    import
-    (
-      builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-    )
-    {};
-in {
+}: {
   myHomeManager.git.enable = lib.mkDefault true;
   myHomeManager.tmux.enable = lib.mkDefault true;
 
@@ -26,6 +19,7 @@ in {
 
   # evm related
   home.sessionVariables.milady = "milady";
+  home.sessionVariables.FLAKE = "/home/mous/.snowstorm";
   home.sessionVariables.DETERMINISTIC_DEPLOYER = "0x4e59b44847b379578588920ca78fbf26c0b4956c";
 
   home.packages = with pkgs; [
@@ -40,17 +34,19 @@ in {
     doppler
     gnupg
     nix-init
+    zed-editor
+    nh
 
     # git
     gh
     lazygit
     gh-copilot
+    act
 
     lz4
     wget
     radeontop
     ocl-icd
-    nix-alien-pkgs.nix-alien
 
     # make
     gnupg

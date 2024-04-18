@@ -30,7 +30,6 @@ in {
     docker-compose-language-service # docker_compose-language_service
     dockerfile-language-server-nodejs # dockerls
     nodePackages.typescript-language-server # tsserver
-    nodePackages.typescript-language-server # tsserver
     biome
     emmet-ls # emmet_ls
     lua-language-server # lua_ls
@@ -68,16 +67,12 @@ in {
     ];
 
     plugins = with pkgs.vimPlugins; [
+      typescript-tools-nvim
       # Quality of life
       {
         plugin = nvim-autopairs;
         type = "lua";
         config = ''require("nvim-autopairs").setup()'';
-      }
-      {
-        plugin = fromGitHub "mikesmithgh" "kitty-scrollback.nvim" "v4.2.1" "sha256-7hfxW7Ntgi2UqefFygdEFA7LKnR88mdtaJr3OLg/tDs=";
-        type = "lua";
-        config = ''require('kitty-scrollback').setup()'';
       }
       {
         plugin = fromGitHub "mouseless-eth" "vim-huff" "main" "sha256-38aX8YZR/f4UzKf0CI0r7OZBcsLj5pbNJHfzdKJPVaw=";
@@ -97,38 +92,13 @@ in {
         type = "lua";
         config = readFile ./plugins/lsp/saga.rc.lua;
       }
-      #{
-      #  plugin = trouble-nvim;
-      #  type = "lua";
-      #  config = readFile ./plugins/lsp/trouble.rc.lua;
-      #}
-      {
-        plugin = fromGitHub "dmmulroy" "ts-error-translator.nvim" "11ae55b28bde02663b5f983f59b0e3fd9c4e845b" "sha256-NJ0qfKvkwZ/0GolAeATlQLyQ7nGN6Z6q3uRqI+73wPk=";
-        type = "lua";
-        config = ''require("ts-error-translator").setup()'';
-      }
-      {
-        plugin = wilder-nvim;
-        type = "lua";
-        config = ''require("wilder").setup({modes = {':', '/', '?'}})'';
-      }
 
       # Misc
-      {
-        plugin = marks-nvim;
-        type = "lua";
-        config = ''require("marks").setup()'';
-      }
       {
         plugin = nvim-colorizer-lua;
         type = "lua";
         config = ''require("colorizer").setup()'';
       }
-      #{
-      #  plugin = nvim-osc52;
-      #  type = "lua";
-      #  config = readFile ./plugins/misc/osc52.rc.lua;
-      #}
 
       # Git
       {
@@ -138,11 +108,6 @@ in {
         plugin = gitsigns-nvim;
         type = "lua";
         config = readFile ./plugins/misc/gitsigns.rc.lua;
-      }
-      {
-        plugin = octo-nvim;
-        type = "lua";
-        config = ''require("octo").setup()'';
       }
 
       # Meta navigation
@@ -203,28 +168,8 @@ in {
         type = "lua";
         config = readFile ./plugins/lsp/none-ls.rc.lua;
       }
-      #{
-      #  plugin = fromGitHub "folke" "trouble.nvim" "e83d84ed64a39e039c402ec8a2e0e9df704175f5" "sha256-D08lopuRbilVanYz5a4EZxQVlJTj11yfKJcdQENOE/0=";
-      #  type = "lua";
-      #  config = readFile ./plugins/lsp/trouble.rc.lua;
-      #}
-      {
-        plugin = trouble-nvim;
-        type = "lua";
-        config = readFile ./plugins/lsp/trouble.rc.lua;
-      }
-      {
-        plugin = typescript-tools-nvim;
-        type = "lua";
-        config = readFile ./plugins/lsp/typescript-tools.rc.lua;
-      }
 
       # Rust specific
-      {
-        plugin = rust-tools-nvim;
-        type = "lua";
-        config = readFile ./plugins/lsp/rust-tools.rc.lua;
-      }
       #{
       #  plugin = rustaceanvim;
       #  type = "lua";
