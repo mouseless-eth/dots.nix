@@ -45,10 +45,9 @@
     };
   };
 
-  outputs = { ... } @ inputs:
-    let
-      myLib = import ./myLib/default.nix { inherit inputs; };
-    in
+  outputs = {...} @ inputs: let
+    myLib = import ./myLib/default.nix {inherit inputs;};
+  in
     with myLib; {
       nixosConfigurations = {
         mini-itx = mkSystem ./hosts/mini-itx/configuration.nix;
