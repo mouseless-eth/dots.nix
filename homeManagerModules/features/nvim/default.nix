@@ -165,7 +165,11 @@ in {
       }
 
       # Treesitter (highlighter)
-      {plugin = nvim-treesitter.withAllGrammars;}
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        type = "lua";
+        config = readFile ./plugins/lsp/treesitter.rc.lua;
+      }
 
       # LSP Related
       {
