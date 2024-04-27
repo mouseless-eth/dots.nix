@@ -1,18 +1,25 @@
 local harpoon = require("harpoon")
-harpoon:setup()
+harpoon:setup({
+	settings = {
+		save_on_toggle = false,
+		save_on_change = true,
+		excluded_filetypes = { "harpoon" },
+		mark_branch = true,
+	},
+})
 
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end)
-vim.keymap.set("n", "<leader>hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", ",ha", function() harpoon:list():add() end)
+vim.keymap.set("n", ",hq", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end)
+vim.keymap.set("n", ",h1", function() harpoon:list():select(1) end)
+vim.keymap.set("n", ",h2", function() harpoon:list():select(2) end)
+vim.keymap.set("n", ",h3", function() harpoon:list():select(3) end)
+vim.keymap.set("n", ",h4", function() harpoon:list():select(4) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<leader>o", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<leader>i", function() harpoon:list():next() end)
+vim.keymap.set("n", ",o", function() harpoon:list():prev() end)
+vim.keymap.set("n", ",i", function() harpoon:list():next() end)
 -- stylua: ignore end
 
 local conf = require("telescope.config").values
@@ -34,6 +41,6 @@ local function toggle_telescope(harpoon_files)
 		:find()
 end
 
-vim.keymap.set("n", "<leader>ho", function()
+vim.keymap.set("n", ";h", function()
 	toggle_telescope(harpoon:list())
 end, { desc = "Open harpoon window" })

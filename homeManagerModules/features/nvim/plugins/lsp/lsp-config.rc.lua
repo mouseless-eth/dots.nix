@@ -8,7 +8,31 @@ local on_attach = function(client, bufnr)
 		return { buffer = bufnr, desc = "LSP " .. desc }
 	end
 
-	map("n", "gD", vim.lsp.buf.declaration, opts("Go to declaration"))
+	-- if client.server_capabilities.inlayHintProvider then
+	-- 	vim.lsp.buf.inlay_hint(true, bufnr)
+	-- end
+
+	map("n", ",gr", "<cmd>Lspsaga finder ref<CR>")
+	map("n", ",sD", "<cmd>Lspsaga finder def<CR>")
+	map("n", ",sI", "<cmd>Lspsaga finder imp<CR>")
+	map("n", ",sa", "<cmd>Lspsaga code_action<CR>")
+	map("n", ",sr", "<cmd>Lspsaga rename ++project<CR>")
+	map("n", ",d", "<cmd>Lspsaga finder tyd<CR>")
+	map("n", ",sp", "<cmd>Lspsaga peek_definition<CR>")
+
+	-- Diagnostic
+	map("n", ",sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+	map("n", ",sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+	map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+	map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+	-- Toggle Outline
+	map("n", ",su", "<cmd>Lspsaga outline<CR>")
+
+	-- Callhierarchy
+	map("n", ",si", "<cmd>Lspsaga incoming_calls<CR>")
+	map("n", ",so", "<cmd>Lspsaga outgoing_calls<CR>")
+
 	map("n", ",sd", vim.lsp.buf.definition, opts("Go to definition"))
 	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
 	map("n", ",sh", vim.lsp.buf.signature_help, opts("Show signature help"))
@@ -144,3 +168,26 @@ lspconfig["biome"].setup({
 	capabilities = capabilities,
 	on_init = on_init,
 })
+
+lspconfig["gopls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	on_init = on_init,
+})
+
+vim.g.rustaceanvim = {
+	-- Plugin configuration
+	tools = {},
+	-- LSP configuration
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		on_init = on_init,
+		default_settings = {
+			-- rust-analyzer language server configuration
+			["rust-analyzer"] = {},
+		},
+	},
+	-- DAP configuration
+	dap = {},
+}

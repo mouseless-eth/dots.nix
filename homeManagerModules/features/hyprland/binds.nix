@@ -12,7 +12,7 @@ in {
     # Remap capslock to super.
     input = {
       kb_layout = "us";
-      kb_options = "caps:super";
+      kb_options = "caps:super,ctrl:shift";
     };
 
     bindm = [

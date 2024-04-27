@@ -37,6 +37,7 @@
     nix-init
     zed-editor
     nh
+    nodePackages_latest.vercel
 
     # git
     gh
@@ -77,8 +78,8 @@
 
     # other langs
     #python3Full
-    python312Packages.pip
-    python312Packages.virtualenv
-    chatgpt-cli
+    #python312Packages.pip
+    #python312Packages.virtualenv
+    #chatgpt-cli
   ];
 }

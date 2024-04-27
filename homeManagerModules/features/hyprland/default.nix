@@ -5,7 +5,7 @@
   inputs,
   ...
 }: {
-  imports = [./hyprpaper.nix ./hyprlock-login.nix ./hyprlock.nix ./hypridle.nix ./workspace-switcher.nix ./monitors.nix ./binds.nix];
+  imports = [./hyprpaper.nix ./hyprlock-login.nix ./hyprlock.nix ./hypridle.nix ./monitors.nix ./binds.nix];
 
   wayland.windowManager.hyprland = {
     plugins = [
@@ -96,9 +96,9 @@
         disable_hyprland_logo = true;
       };
 
-      binds = {
-        movefocus_cycles_fullscreen = true;
-      };
+      #binds = {
+      #  movefocus_cycles_fullscreen = true;
+      #};
 
       windowrulev2 = [
         "bordercolor rgb(FF5555),fullscreen:1"
@@ -111,6 +111,7 @@
         "noinitialfocus,class:^(xwaylandvideobridge)$"
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
+        "float, title:^(Rainbow Wallet)$"
       ];
 
       dwindle = {
