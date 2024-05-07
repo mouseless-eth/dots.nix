@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    #waybar = {
+    #  url = "github:Alexays/waybar";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+
     #ollama = {
     #  url = "github:abysssol/ollama-flake";
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -29,14 +34,10 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "github:hyprwm/hyprland/fe7b748eb668136dd0558b7c8279bfcd7ab4d759";
+      #url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hypridle.url = "github:hyprwm/hypridle";
     hyprlock.url = "github:hyprwm/hyprlock";
 
     xdg-portal-hyprland = {

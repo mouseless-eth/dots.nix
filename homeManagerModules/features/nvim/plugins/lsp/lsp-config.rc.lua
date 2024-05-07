@@ -163,11 +163,11 @@ lspconfig["nil_ls"].setup({
 	on_init = on_init,
 })
 
-lspconfig["biome"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	on_init = on_init,
-})
+-- lspconfig["biome"].setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	on_init = on_init,
+-- })
 
 lspconfig["gopls"].setup({
 	on_attach = on_attach,

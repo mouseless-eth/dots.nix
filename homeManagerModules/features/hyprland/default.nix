@@ -5,11 +5,11 @@
   inputs,
   ...
 }: {
-  imports = [./hyprpaper.nix ./hyprlock-login.nix ./hyprlock.nix ./hypridle.nix ./monitors.nix ./binds.nix];
+  imports = [./hyprpaper.nix ./hyprlock-login.nix ./hyprlock.nix ./monitors.nix ./binds.nix];
 
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
 
     enable = true;
@@ -37,7 +37,6 @@
         "dunst"
         "hyprpaper"
         "$HOME/.config/hypr/scripts/workspacer/workspace_listener.sh"
-        "hypridle"
         "hyprlock -c ~/.config/hypr/hyprlock-login.conf"
       ];
 
@@ -147,15 +146,15 @@
       };
 
       plugin = {
-        hyprexpo = {
-          columns = 3;
-          gap_size = 8;
-          bg_col = "rgb(111111)";
-          workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
-          enable_gesture = true; # laptop touchpad, 4 fingers
-          gesture_distance = 300; # how far is the "max"
-          gesture_positive = true; # positive = swipe down. Negative = swipe up.
-        };
+        #hyprexpo = {
+        #  columns = 3;
+        #  gap_size = 8;
+        #  bg_col = "rgb(111111)";
+        #  workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
+        #  enable_gesture = true; # laptop touchpad, 4 fingers
+        #  gesture_distance = 300; # how far is the "max"
+        #  gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        #};
       };
     };
   };

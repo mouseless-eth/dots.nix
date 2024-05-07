@@ -90,6 +90,12 @@
       bind -r h select-pane -L
       bind -r l select-pane -R
 
+      # vim-like pane resizing
+      bind-key -n 'C-S-j' resize-pane -D
+      bind-key -n 'C-S-k' resize-pane -U
+      bind-key -n 'C-S-l' resize-pane -R
+      bind-key -n 'C-S-h' resize-pane -L
+
       bind -r D neww -c "#{pane_current_path}" "[[ -e TODO.md ]] && nvim TODO.md || nvim ~/.dotfiles/personal/todo.md"
 
       # forget the find window.  That is for chumps

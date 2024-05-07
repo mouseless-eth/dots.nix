@@ -40,7 +40,7 @@ in {
 
       # Misc.
       "${modShift}, e, exit"
-      "${mod}, W, hyprexpo:expo, toggle"
+      #"${mod}, W, hyprexpo:expo, toggle"
 
       # workspacer
       "${mod}, Y, exec , $HOME/.config/hypr/scripts/workspacer/workspaced.py"

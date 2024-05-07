@@ -41,8 +41,8 @@ in {
     # formatting (none-ls plugins)
     stylua
     prettierd
-    python310Packages.black
-    python310Packages.isort
+    #python310Packages.black
+    #python310Packages.isort
 
     # linting/diagnostics (none-ls plugins)
     # eslint_d
