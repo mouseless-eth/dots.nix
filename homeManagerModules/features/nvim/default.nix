@@ -70,7 +70,17 @@ in {
 
     plugins = with pkgs.vimPlugins; [
       typescript-tools-nvim
+      {
+        plugin = trouble-nvim;
+        type = "lua";
+        config = readFile ./plugins/lsp/trouble.rc.lua;
+      }
       # Quality of life
+      {
+        plugin = which-key-nvim;
+        type = "lua";
+        config = ''require("which-key").setup()'';
+      }
       {
         plugin = nvim-autopairs;
         type = "lua";
@@ -88,11 +98,6 @@ in {
         plugin = tokyonight-nvim;
         type = "lua";
         config = readFile ./plugins/tokyonight.rc.lua;
-      }
-      {
-        plugin = lspsaga-nvim;
-        type = "lua";
-        config = readFile ./plugins/lsp/saga.rc.lua;
       }
 
       # Misc
@@ -211,18 +216,6 @@ in {
         plugin = lspkind-nvim;
         type = "lua";
         config = readFile ./plugins/lsp/lspkind.rc.lua;
-      }
-
-      # Copilot
-      {
-        plugin = copilot-cmp;
-        type = "lua";
-        config = readFile ./plugins/copilot/copilot-cmp.rc.lua;
-      }
-      {
-        plugin = copilot-lua;
-        type = "lua";
-        config = readFile ./plugins/copilot/copilot-lua.rc.lua;
       }
     ];
   };

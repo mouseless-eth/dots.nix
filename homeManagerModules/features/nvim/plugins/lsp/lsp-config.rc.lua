@@ -3,53 +3,60 @@ local lspconfig = require("lspconfig")
 
 local map = vim.keymap.set
 
+-- Pretty floaters for all lsp related popups
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = "rounded",
+	close_events = { "BufHidden", "InsertLeave" },
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = "rounded",
+})
+
+vim.diagnostic.config({
+	float = {
+		source = "always",
+		border = "rounded",
+	},
+})
+
+function GoToNextDiagnosticAndCodeAction()
+	vim.diagnostic.goto_next()
+	vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+end
+
+function GoToPrevDiagnosticAndCodeAction()
+	vim.diagnostic.goto_prev()
+	vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+end
+
 local on_attach = function(client, bufnr)
 	local function opts(desc)
 		return { buffer = bufnr, desc = "LSP " .. desc }
 	end
 
-	-- if client.server_capabilities.inlayHintProvider then
-	-- 	vim.lsp.buf.inlay_hint(true, bufnr)
-	-- end
+	local nmap = function(keys, func, desc)
+		if desc then
+			desc = "LSP: " .. desc
+		end
 
-	map("n", ",gr", "<cmd>Lspsaga finder ref<CR>")
-	map("n", ",sD", "<cmd>Lspsaga finder def<CR>")
-	map("n", ",sI", "<cmd>Lspsaga finder imp<CR>")
-	map("n", ",sa", "<cmd>Lspsaga code_action<CR>")
-	map("n", ",sr", "<cmd>Lspsaga rename ++project<CR>")
-	map("n", ",d", "<cmd>Lspsaga finder tyd<CR>")
-	map("n", ",sp", "<cmd>Lspsaga peek_definition<CR>")
+		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+	end
 
-	-- Diagnostic
-	map("n", ",sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-	map("n", ",sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-	map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-	map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+	nmap("[d", GoToPrevDiagnosticAndCodeAction, "prev [D]diagnostic")
+	nmap("]d", GoToNextDiagnosticAndCodeAction, "next [D]diagnostic")
+	nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+	nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+	nmap("go", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+	-- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-	-- Toggle Outline
-	map("n", ",su", "<cmd>Lspsaga outline<CR>")
+	nmap("gl", vim.diagnostic.open_float, "Open Diagnostic Float")
 
-	-- Callhierarchy
-	map("n", ",si", "<cmd>Lspsaga incoming_calls<CR>")
-	map("n", ",so", "<cmd>Lspsaga outgoing_calls<CR>")
+	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+	nmap("gs", vim.lsp.buf.signature_help, "Signature Documentation")
 
-	map("n", ",sd", vim.lsp.buf.definition, opts("Go to definition"))
-	map("n", "gi", vim.lsp.buf.implementation, opts("Go to implementation"))
-	map("n", ",sh", vim.lsp.buf.signature_help, opts("Show signature help"))
-	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Add workspace folder"))
-	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Remove workspace folder"))
-
-	map("n", "<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, opts("List workspace folders"))
-
-	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code action"))
-	map("n", "gr", vim.lsp.buf.references, opts("Show references"))
-
-	-- saga
-	vim.keymap.set("n", ",sr", "<cmd>Lspsaga rename ++project<CR>")
-	vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-	vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 	-- setup signature popup
 	if client.server_capabilities.signatureHelpProvider then
@@ -99,11 +106,32 @@ lspconfig["dockerls"].setup({
 	on_init = on_init,
 })
 
-require("typescript-tools").setup({
+lspconfig["tsserver"].setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	on_init = on_init,
 })
+
+--require("typescript-tools").setup({
+--	on_attach = on_attach,
+--	capabilities = capabilities,
+--	on_init = on_init,
+--	settings = {
+--		expose_as_code_action = {
+--			"add_missing_imports",
+--		},
+--		complete_function_calls = true,
+--		tsserver_file_preferences = {
+--			includeInlayParameterNameHints = "all",
+--			includeCompletionsForModuleExports = true,
+--			quotePreference = "auto",
+--		},
+--		tsserver_format_options = {
+--			allowIncompleteCompletions = false,
+--			allowRenameOfImportPath = false,
+--		},
+--	},
+--})
 
 -- lspconfig["tsserver"].setup({
 --     on_attach = on_attach,

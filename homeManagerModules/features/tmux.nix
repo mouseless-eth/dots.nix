@@ -98,6 +98,10 @@
 
       bind -r D neww -c "#{pane_current_path}" "[[ -e TODO.md ]] && nvim TODO.md || nvim ~/.dotfiles/personal/todo.md"
 
+      # move pane to another window
+      bind m command-prompt -p "Move pane to window:" "join-pane -t '%%'"
+      bind e rotate-window
+
       # forget the find window.  That is for chumps
       bind-key -r f run-shell "tmux new ~/.local/bin/tmux-sessionizer"
 

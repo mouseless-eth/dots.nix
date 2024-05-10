@@ -25,6 +25,7 @@
     libreoffice
     nurl
     nix-search-cli
+    yubikey-manager-qt
 
     mullvad-vpn
     mullvad-browser
