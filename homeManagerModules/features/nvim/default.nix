@@ -69,7 +69,10 @@ in {
     ];
 
     plugins = with pkgs.vimPlugins; [
-      typescript-tools-nvim
+      {
+        plugin = fromGitHub "pmizio" "typescript-tools.nvim" "bugfix/202" "sha256-TcznuaSVOe6t7z8OB64yHBdwgnfCDdOsLzLxgWBo+JM=";
+      }
+      #typescript-tools-nvim
       {
         plugin = trouble-nvim;
         type = "lua";
@@ -177,6 +180,7 @@ in {
       }
 
       # LSP Related
+      telescope-ui-select-nvim
       {
         plugin = nvim-lspconfig;
         type = "lua";

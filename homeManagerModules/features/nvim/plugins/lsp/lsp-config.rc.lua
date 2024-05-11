@@ -20,16 +20,6 @@ vim.diagnostic.config({
 	},
 })
 
-function GoToNextDiagnosticAndCodeAction()
-	vim.diagnostic.goto_next()
-	vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-end
-
-function GoToPrevDiagnosticAndCodeAction()
-	vim.diagnostic.goto_prev()
-	vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-end
-
 local on_attach = function(client, bufnr)
 	local function opts(desc)
 		return { buffer = bufnr, desc = "LSP " .. desc }
@@ -43,15 +33,16 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	nmap("[d", GoToPrevDiagnosticAndCodeAction, "prev [D]diagnostic")
-	nmap("]d", GoToNextDiagnosticAndCodeAction, "next [D]diagnostic")
+	nmap("]d", vim.diagnostic.goto_next, "prev [D]diagnostic")
+	nmap("[d", vim.diagnostic.goto_prev, "next [D]diagnostic")
 	nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 	nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 	nmap("go", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 	-- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-	nmap("gl", vim.diagnostic.open_float, "Open Diagnostic Float")
+	nmap("gk", vim.diagnostic.open_float, "Open Diagnostic Float")
+	nmap("gl", vim.lsp.buf.code_action, "Open Code Action Float")
 
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 	nmap("gs", vim.lsp.buf.signature_help, "Signature Documentation")
@@ -106,32 +97,32 @@ lspconfig["dockerls"].setup({
 	on_init = on_init,
 })
 
-lspconfig["tsserver"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	on_init = on_init,
-})
-
---require("typescript-tools").setup({
+--lspconfig["tsserver"].setup({
 --	on_attach = on_attach,
 --	capabilities = capabilities,
 --	on_init = on_init,
---	settings = {
---		expose_as_code_action = {
---			"add_missing_imports",
---		},
---		complete_function_calls = true,
---		tsserver_file_preferences = {
---			includeInlayParameterNameHints = "all",
---			includeCompletionsForModuleExports = true,
---			quotePreference = "auto",
---		},
---		tsserver_format_options = {
---			allowIncompleteCompletions = false,
---			allowRenameOfImportPath = false,
---		},
---	},
 --})
+
+require("typescript-tools").setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	on_init = on_init,
+	settings = {
+		--expose_as_code_action = {
+		--	"add_missing_imports",
+		--},
+		complete_function_calls = true,
+		tsserver_file_preferences = {
+			includeInlayParameterNameHints = "all",
+			includeCompletionsForModuleExports = true,
+			quotePreference = "auto",
+		},
+		tsserver_format_options = {
+			allowIncompleteCompletions = false,
+			allowRenameOfImportPath = false,
+		},
+	},
+})
 
 -- lspconfig["tsserver"].setup({
 --     on_attach = on_attach,

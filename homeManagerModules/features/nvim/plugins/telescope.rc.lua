@@ -2,11 +2,24 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
-local function telescope_buffer_dir()
-	return vim.fn.expand("%:p:h")
-end
-
 telescope.setup({
+	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({
+				previewer = false,
+				initial_mode = "normal",
+				-- sorting_strategy = "ascending",
+				-- layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						width = 0.5,
+						height = 0.4,
+						preview_width = 0.6,
+					},
+				},
+			}),
+		},
+	},
 	defaults = {
 		mappings = {
 			n = {
@@ -15,6 +28,8 @@ telescope.setup({
 		},
 	},
 })
+
+require("telescope").load_extension("ui-select")
 
 vim.keymap.set("n", ";f", function()
 	builtin.find_files({
